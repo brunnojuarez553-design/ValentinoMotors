@@ -347,7 +347,7 @@ nav {
   transform: scale(1.04);
   filter: saturate(0.7) brightness(0.55);
   will-change: transform;
-  opacity: 0;
+  opacity: 1;
   transition: opacity 0.6s ease;
 }
 .hero-video.vml-playing {
@@ -1873,7 +1873,7 @@ footer ul li a:hover { color: var(--red); }
       <!-- RIGHT: video only -->
       <div class="nosotros-right fade-up delay-2">
         <div class="nosotros-photo-wrap">
-          <video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;display:block;filter:saturate(0.9);">
+          <video id="nosotrosVideo" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;display:block;filter:saturate(0.9);">
             <source src="https://res.cloudinary.com/dvvuwigmy/video/upload/v1779062127/insta_video_70029_qgjy1s.mp4" type="video/mp4">
           </video>
           <div class="nosotros-photo-overlay"></div>
@@ -3782,71 +3782,72 @@ function toggleIpFaq(id) {
 </script>
 
 <script>
-/* ── Hero video: garantiza reproducción inmediata en todos los browsers/dispositivos ── */
+/* ── Autoplay garantizado: hero + nosotros ── */
 (function() {
-  var v = document.getElementById('heroVideo');
-  if (!v) return;
+  var videos = [
+    document.getElementById('heroVideo'),
+    document.getElementById('nosotrosVideo')
+  ].filter(Boolean);
 
-  function tryPlay() {
-    var p = v.play();
-    if (p !== undefined) {
-      p.then(function() {
-        v.classList.add('vml-playing');
-      }).catch(function() {
-        // Autoplay bloqueado — intentar con interacción del usuario
-        v.muted = true;
-        v.play().then(function() {
-          v.classList.add('vml-playing');
-        }).catch(function() {});
-      });
-    } else {
-      v.classList.add('vml-playing');
+  function forcePlay(v) {
+    v.muted = true;
+    v.setAttribute('muted', '');
+    v.setAttribute('playsinline', '');
+    v.setAttribute('autoplay', '');
+    if (v.paused) {
+      var p = v.play();
+      if (p && p.catch) p.catch(function() {});
     }
   }
 
-  // Intento 1: inmediato
-  v.muted = true;
-  v.setAttribute('muted', '');
-  v.setAttribute('playsinline', '');
-  tryPlay();
+  function initVideo(v) {
+    // Disparar inmediatamente
+    forcePlay(v);
 
-  // Intento 2: cuando el DOM está listo
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', tryPlay);
+    // Al tener datos suficientes
+    ['loadedmetadata','loadeddata','canplay','canplaythrough'].forEach(function(ev) {
+      v.addEventListener(ev, function() { forcePlay(v); });
+    });
+
+    // Si se detiene solo (ej. iOS en background)
+    v.addEventListener('pause', function() {
+      if (!document.hidden) forcePlay(v);
+    });
+
+    // IntersectionObserver para el video de quienes somos (below the fold)
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) forcePlay(v);
+          else v.pause();
+        });
+      }, { threshold: 0.1 });
+      io.observe(v);
+    }
   }
 
-  // Intento 3: cuando cargó suficiente data
-  v.addEventListener('loadeddata', function() {
-    tryPlay();
-  });
-  v.addEventListener('canplay', function() {
-    tryPlay();
-  });
+  // Inicializar todos los videos
+  videos.forEach(initVideo);
 
-  // Intento 4: primer touch/click del usuario (iOS fallback)
+  // Desbloqueo por interacción (iOS Safari bloquea autoplay hasta primer gesto)
   var unlocked = false;
-  function unlockOnInteraction() {
+  function unlock() {
     if (unlocked) return;
     unlocked = true;
-    tryPlay();
-    document.removeEventListener('touchstart', unlockOnInteraction, true);
-    document.removeEventListener('click', unlockOnInteraction, true);
-    document.removeEventListener('scroll', unlockOnInteraction, true);
+    videos.forEach(forcePlay);
   }
-  document.addEventListener('touchstart', unlockOnInteraction, { passive: true, capture: true });
-  document.addEventListener('click', unlockOnInteraction, true);
-  document.addEventListener('scroll', unlockOnInteraction, { passive: true, capture: true });
-
-  // Intento 5: Visibility API — retomar si estaba en background
-  document.addEventListener('visibilitychange', function() {
-    if (!document.hidden) tryPlay();
+  ['touchstart','click','scroll','keydown'].forEach(function(ev) {
+    document.addEventListener(ev, unlock, { once: true, passive: true, capture: true });
   });
 
-  // Reiniciar si se detiene inesperadamente
-  v.addEventListener('pause', function() {
-    if (!document.hidden) {
-      setTimeout(function() { if (v.paused) tryPlay(); }, 300);
-    }
+  // Visibility API — retomar al volver al tab
+  document.addEventListener('visibilitychange', function() {
+    if (!document.hidden) videos.forEach(forcePlay);
+  });
+
+  // Intentos diferidos por si el DOM no terminó de cargar
+  [100, 500, 1000, 2000].forEach(function(ms) {
+    setTimeout(function() { videos.forEach(forcePlay); }, ms);
   });
 })();
 </script>
