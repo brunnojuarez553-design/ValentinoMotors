@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="description" content="Valentino Motors LG — Diagnóstico preciso para vehículos que otros talleres no pudieron resolver. Especialistas en fallas eléctricas, ECU y camionetas en Catia La Mar, Venezuela.">
 <meta name="keywords" content="diagnóstico automotriz Catia La Mar, taller camionetas Venezuela, fallas eléctricas automotriz, reprogramación ECU Venezuela, escáner multimarca Venezuela, talleres que otros no resuelven, Valentino Motors LG">
 <meta name="robots" content="index, follow">
@@ -12,6 +12,12 @@
 <meta property="og:description" content="Diagnóstico computarizado de precisión para camionetas y vehículos modernos. Especialistas en fallas eléctricas, ECU y fallas intermitentes en Catia La Mar, Venezuela.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_VE">
+<meta property="og:url" content="https://valentinomotorslg.com/">
+<meta property="og:image" content="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779059651/IMG_6676_jbholt.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779059651/IMG_6676_jbholt.jpg">
+<link rel="canonical" href="https://valentinomotorslg.com/">
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Valentino Motors LG — Soluciones Tecnológicas para el Sector Automotriz">
@@ -321,7 +327,7 @@ nav {
 ────────────────────────────── */
 #hero {
   position: relative;
-  min-height: 92vh;
+  min-height: 92dvh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -1145,6 +1151,7 @@ footer ul li a:hover { color: var(--red); }
   align-items: center;
   animation: tickerScroll 32s linear infinite;
   width: max-content;
+  touch-action: pan-x;
 }
 .brands-track:hover { animation-play-state: paused; }
 @keyframes tickerScroll {
@@ -1153,33 +1160,40 @@ footer ul li a:hover { color: var(--red); }
 }
 .brand-item {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 10px;
-  padding: 18px 36px;
+  justify-content: center;
+  gap: 6px;
+  padding: 0 2.2rem;
   border-right: 1px solid var(--border);
   flex-shrink: 0;
-  transition: background 0.25s;
   cursor: default;
+  height: 80px;
+  background: transparent;
+  position: relative;
+  transition: background 0.25s;
 }
-.brand-item:hover { background: rgba(232,0,15,0.06); }
-.brand-item img {
-  height: 22px;
-  width: auto;
-  filter: brightness(0) invert(1);
-  opacity: 0.55;
-  transition: opacity 0.25s;
-  object-fit: contain;
-  max-width: 72px;
+.brand-item::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 0; height: 1.5px;
+  background: var(--red);
+  transition: width 0.3s ease;
 }
-.brand-item:hover img { opacity: 0.9; }
+.brand-item:hover { background: rgba(232,0,15,0.04); }
+.brand-item:hover::after { width: 70%; }
+.brand-item img { display: none; }
 .brand-item span {
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.14em;
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  letter-spacing: 0.06em;
+  color: rgba(245,245,248,0.45);
   text-transform: uppercase;
-  color: var(--muted);
   white-space: nowrap;
   transition: color 0.25s;
+  line-height: 1;
 }
 .brand-item:hover span { color: var(--white); }
 
@@ -1397,43 +1411,7 @@ footer ul li a:hover { color: var(--red); }
 }
 
 
-/* ──────────────────────────────
-   FLOATING WHATSAPP
-────────────────────────────── */
-.wa-float {
-  position: fixed;
-  bottom: 2rem; right: 2rem;
-  z-index: 300;
-  display: flex; flex-direction: column; align-items: flex-end; gap: 12px;
-}
-.wa-bubble {
-  background: var(--graphite);
-  border: 1px solid var(--border-red);
-  padding: 10px 14px;
-  font-size: 0.8rem; color: var(--white);
-  backdrop-filter: blur(12px);
-  display: none;
-  max-width: 220px;
-  text-align: center;
-  animation: fadeInUp 0.3s ease;
-}
-.wa-float:hover .wa-bubble { display: block; }
-@keyframes fadeInUp { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
-.wa-btn {
-  width: 58px; height: 58px;
-  background: #25D366;
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  text-decoration: none; color: white;
-  box-shadow: 0 0 0 0 rgba(37,211,102,0.5);
-  animation: waGlow 2.5s ease-in-out infinite;
-  position: relative;
-}
-@keyframes waGlow {
-  0%,100%{box-shadow: 0 0 0 0 rgba(37,211,102,0.4)}
-  50%{box-shadow: 0 0 0 16px rgba(37,211,102,0)}
-}
-.wa-btn svg { width: 28px; height: 28px; fill: white; }
+/* WA float removed - chatbot launcher handles this */
 
 /* ──────────────────────────────
    RESPONSIVE — TABLET 1024px
@@ -1446,6 +1424,7 @@ footer ul li a:hover { color: var(--red); }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
   .casos-grid { grid-template-columns: 1fr; }
   .comp-grid { grid-template-columns: 1fr; }
+  .nosotros-grid { grid-template-columns: 1fr; gap: 2.5rem; }
 }
 
 /* ──────────────────────────────
@@ -1465,7 +1444,7 @@ footer ul li a:hover { color: var(--red); }
   .mobile-menu { top: 60px !important; }
 
   /* Hero */
-  #hero { min-height: 100svh; padding: 1.5rem 0 3rem; }
+  #hero { min-height: 100dvh; padding: 1.5rem 0 3rem; }
   .hero-content { padding: 0 1.2rem; gap: 0; }
   .hero-eyebrow { margin-bottom: 1.2rem; }
   .hero-badge-row { gap: 8px; }
@@ -1482,15 +1461,15 @@ footer ul li a:hover { color: var(--red); }
   .hsp-divider { display: none; }
 
   /* Brands ticker */
-  .brand-item { padding: 14px 16px; }
-  .brand-item span { display: none; }
+  .brand-item { height: 64px; padding: 0 1.4rem; }
+  .brand-item span { font-size: 0.95rem; }
   .brands-ticker-label { padding: 0 0.8rem; font-size: 0.52rem; }
 
   /* Quiénes somos */
   .nosotros-section { padding: 60px 0; }
   .nosotros-grid { grid-template-columns: 1fr; gap: 2rem; }
   .nosotros-title { font-size: clamp(2rem, 9vw, 3rem); }
-  .nosotros-photo-wrap { aspect-ratio: 16/12; }
+  .nosotros-photo-wrap { aspect-ratio: 16/12; max-height: 320px; }
   .nosotros-stat-num { font-size: 1.4rem; }
   .nosotros-stat-label { font-size: 0.58rem; }
   .nosotros-card-main { padding: 1.8rem; }
@@ -1524,6 +1503,9 @@ footer ul li a:hover { color: var(--red); }
   .form-row { grid-template-columns: 1fr; }
   .form-wrap { padding: 1.8rem 1.4rem; }
   .form-submit { padding: 15px 20px; font-size: 0.82rem; }
+  .form-group input,
+  .form-group select,
+  .form-group textarea { font-size: 16px; }
 
   /* Garantia */
   .garantia-inner { gap: 1.2rem; flex-direction: column; align-items: flex-start; padding: 0 1.2rem; }
@@ -1550,6 +1532,8 @@ footer ul li a:hover { color: var(--red); }
   .form-wrap { padding: 1.4rem 1rem; }
   .caso-card { padding: 1.4rem 1.2rem; }
   .section-pad { padding: 55px 0; }
+  .container { padding: 0 1rem; }
+  .ipage-back { padding: 6px 10px; font-size: 0.72rem; }
 }
 
 /* Chatbot mobile */
@@ -1559,11 +1543,34 @@ footer ul li a:hover { color: var(--red); }
     right: 0;
     bottom: 0;
     border-radius: 0;
-    max-height: 92svh;
+    max-height: 92dvh;
   }
-  .vml-launcher { right: 1rem; bottom: 1.2rem; }
+  .vml-launcher { right: 1rem; bottom: 1.2rem; bottom: calc(1.2rem + env(safe-area-inset-bottom, 0px)); }
 }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AutoRepair",
+  "name": "Valentino Motors LG",
+  "description": "Centro de diagnóstico automotriz especializado en fallas eléctricas, ECU y camionetas en Catia La Mar, Venezuela.",
+  "url": "https://valentinomotorslg.com",
+  "telephone": "+584242740585",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Catia La Mar",
+    "addressRegion": "Estado Vargas",
+    "addressCountry": "VE"
+  },
+  "openingHours": "Mo-Sa 08:00-18:00",
+  "sameAs": ["https://www.instagram.com/valentinomotorslg/"],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5",
+    "reviewCount": "500"
+  }
+}
+</script>
 </head>
 <body>
 <a href="#hero" style="position:absolute;left:-9999px;top:0;z-index:9999;padding:8px 16px;background:var(--red);color:white;font-weight:700;border-radius:0 0 4px 0" onfocus="this.style.left='0'">Saltar al contenido principal</a>
@@ -1593,14 +1600,14 @@ footer ul li a:hover { color: var(--red); }
 
 <!-- MOBILE MENU (compact dropdown) -->
 <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Menú de navegación" aria-modal="true">
-  <a href="#nosotros" onclick="openOverlay('#nosotros','Nosotros');return false;">Nosotros</a>
-  <a href="#dolor" onclick="openOverlay('#dolor','¿Tu problema?');return false;">¿Tu problema?</a>
-  <a href="#services" onclick="openOverlay('#services','Servicios');return false;">Servicios</a>
-  <a href="#casos" onclick="openOverlay('#casos','Casos reales');return false;">Casos reales</a>
-  <a href="#testimonios" onclick="openOverlay('#testimonios','Reseñas');return false;">Reseñas</a>
-  <a href="#faq" onclick="openOverlay('#faq','FAQ');return false;">FAQ</a>
+  <a href="#" onclick="openPage('nosotros');return false;">Nosotros</a>
+  <a href="#" onclick="openPage('tu-problema');return false;">¿Tu problema?</a>
+  <a href="#" onclick="openPage('servicios');return false;">Servicios</a>
+  <a href="#" onclick="openPage('casos');return false;">Casos reales</a>
+  <a href="#" onclick="openPage('resenas');return false;">Reseñas</a>
+  <a href="#" onclick="openPage('faq');return false;">FAQ</a>
   <div class="mobile-menu-divider"></div>
-  <a href="#booking" class="mobile-cta-btn" onclick="openOverlay('#booking','Agendar');return false;">📱 Hablar con especialista</a>
+  <a href="https://wa.me/584242740585?text=Hola%20Valentino%20Motors%20LG!%20Quiero%20consultar%20sobre%20mi%20veh%C3%ADculo." target="_blank" rel="noopener" class="mobile-cta-btn" onclick="closeMobile()">📱 Hablar con especialista</a>
 </div>
 
 <!-- FULLSCREEN NAV OVERLAY -->
@@ -1617,7 +1624,7 @@ footer ul li a:hover { color: var(--red); }
 <main>
 <section id="hero" aria-label="Presentación principal">
   <div class="hero-video-wrap">
-    <video class="hero-video" autoplay muted loop playsinline preload="auto">
+    <video class="hero-video" autoplay muted loop playsinline preload="metadata">
       <source src="https://res.cloudinary.com/dvvuwigmy/video/upload/v1779059633/insta_video_2208_vxavh9.mp4" type="video/mp4">
     </video>
     <div class="hero-video-overlay"></div>
@@ -1628,8 +1635,7 @@ footer ul li a:hover { color: var(--red); }
       <div class="hero-eyebrow">
         <div class="label">Catia La Mar · Venezuela · A 2 min de La Guaira</div>
         <div class="hero-badge-row">
-          <span class="hero-badge">Centro de diagnóstico premium</span>
-          <span class="hero-badge">+15.000 seguidores</span>
+          <span class="hero-badge">Soluciones Tecnológicas Automotrices</span>
         </div>
       </div>
 
@@ -1742,31 +1748,33 @@ footer ul li a:hover { color: var(--red); }
   <div class="brands-ticker">
     <div class="brands-track">
       <!-- set 1 -->
-      <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/9/90/Toyota_wordmark.svg" alt="Toyota"><span>Toyota</span></div>
-      <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Ford_logo_flat.svg" alt="Ford"><span>Ford</span></div>
-      <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Chevrolet_logo.svg" alt="Chevrolet"><span>Chevrolet</span></div>
-      <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Nissan_2020_logo.svg" alt="Nissan"><span>Nissan</span></div>
-      <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Mitsubishi_logo.svg" alt="Mitsubishi"><span>Mitsubishi</span></div>
-      <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/f/f4/Volkswagen_logo_2019.svg" alt="Volkswagen"><span>Volkswagen</span></div>
-      <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b7/Hyundai_Motor_Company_logo.svg" alt="Hyundai"><span>Hyundai</span></div>
-      <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/8/8d/Kia_logo2.svg" alt="Kia"><span>Kia</span></div>
-      <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/1/1e/Jeep_wordmark.svg" alt="Jeep"><span>Jeep</span></div>
-      <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Dodge-Logo.svg" alt="Dodge"><span>Dodge</span></div>
-      <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/BMW_logo_%28gray%29.svg" alt="BMW"><span>BMW</span></div>
-      <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/9/92/Mercedes-Benz_logo_2010.svg" alt="Mercedes-Benz"><span>Mercedes-Benz</span></div>
+      <div class="brand-item"><img src="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779066816/IMG_6706_rd21ik.jpg" loading="lazy" alt="Toyota"><span>Toyota</span></div>
+      <div class="brand-item"><img src="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779066496/IMG_6699_ovabde.png" loading="lazy" alt="Volkswagen"><span>Volkswagen</span></div>
+      <div class="brand-item"><img src="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779066496/IMG_6703_abgdai.jpg" loading="lazy" alt="Hyundai"><span>Hyundai</span></div>
+      <div class="brand-item"><img src="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779066496/IMG_6693_suw8uz.jpg" loading="lazy" alt="Audi"><span>Audi</span></div>
+      <div class="brand-item"><img src="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779066496/IMG_6694_xsjeoz.jpg" loading="lazy" alt="Chevrolet"><span>Chevrolet</span></div>
+      <div class="brand-item"><img src="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779066496/IMG_6702_tslins.png" loading="lazy" alt="Ford"><span>Ford</span></div>
+      <div class="brand-item"><img src="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779066496/IMG_6692_zbbf8x.png" loading="lazy" alt="Jeep"><span>Jeep</span></div>
+      <div class="brand-item"><img src="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779066496/IMG_6695_m7chg9.jpg" loading="lazy" alt="Dodge"><span>Dodge</span></div>
+      <div class="brand-item"><img src="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779066496/IMG_6698_xh0lgr.png" loading="lazy" alt="BMW"><span>BMW</span></div>
+      <div class="brand-item"><img src="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779066496/IMG_6700_p9uumu.png" loading="lazy" alt="Mercedes-Benz"><span>Mercedes-Benz</span></div>
+      <div class="brand-item"><img src="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779066495/IMG_6696_x3jciq.png" loading="lazy" alt="Nissan"><span>Nissan</span></div>
+      <div class="brand-item"><img src="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779066495/IMG_6704_swddbp.png" loading="lazy" alt="Kia"><span>Kia</span></div>
+      <div class="brand-item"><img src="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779066495/IMG_6697_eymgtl.png" loading="lazy" alt="Mitsubishi"><span>Mitsubishi</span></div>
       <!-- set 2 (duplicate for seamless loop) -->
-      <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/9/90/Toyota_wordmark.svg" alt="Toyota"><span>Toyota</span></div>
-      <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Ford_logo_flat.svg" alt="Ford"><span>Ford</span></div>
-      <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Chevrolet_logo.svg" alt="Chevrolet"><span>Chevrolet</span></div>
-      <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Nissan_2020_logo.svg" alt="Nissan"><span>Nissan</span></div>
-      <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Mitsubishi_logo.svg" alt="Mitsubishi"><span>Mitsubishi</span></div>
-      <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/f/f4/Volkswagen_logo_2019.svg" alt="Volkswagen"><span>Volkswagen</span></div>
-      <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b7/Hyundai_Motor_Company_logo.svg" alt="Hyundai"><span>Hyundai</span></div>
-      <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/8/8d/Kia_logo2.svg" alt="Kia"><span>Kia</span></div>
-      <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/1/1e/Jeep_wordmark.svg" alt="Jeep"><span>Jeep</span></div>
-      <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Dodge-Logo.svg" alt="Dodge"><span>Dodge</span></div>
-      <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/BMW_logo_%28gray%29.svg" alt="BMW"><span>BMW</span></div>
-      <div class="brand-item"><img src="https://upload.wikimedia.org/wikipedia/commons/9/92/Mercedes-Benz_logo_2010.svg" alt="Mercedes-Benz"><span>Mercedes-Benz</span></div>
+      <div class="brand-item"><img src="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779066816/IMG_6706_rd21ik.jpg" loading="lazy" alt="Toyota"><span>Toyota</span></div>
+      <div class="brand-item"><img src="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779066496/IMG_6699_ovabde.png" loading="lazy" alt="Volkswagen"><span>Volkswagen</span></div>
+      <div class="brand-item"><img src="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779066496/IMG_6703_abgdai.jpg" loading="lazy" alt="Hyundai"><span>Hyundai</span></div>
+      <div class="brand-item"><img src="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779066496/IMG_6693_suw8uz.jpg" loading="lazy" alt="Audi"><span>Audi</span></div>
+      <div class="brand-item"><img src="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779066496/IMG_6694_xsjeoz.jpg" loading="lazy" alt="Chevrolet"><span>Chevrolet</span></div>
+      <div class="brand-item"><img src="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779066496/IMG_6702_tslins.png" loading="lazy" alt="Ford"><span>Ford</span></div>
+      <div class="brand-item"><img src="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779066496/IMG_6692_zbbf8x.png" loading="lazy" alt="Jeep"><span>Jeep</span></div>
+      <div class="brand-item"><img src="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779066496/IMG_6695_m7chg9.jpg" loading="lazy" alt="Dodge"><span>Dodge</span></div>
+      <div class="brand-item"><img src="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779066496/IMG_6698_xh0lgr.png" loading="lazy" alt="BMW"><span>BMW</span></div>
+      <div class="brand-item"><img src="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779066496/IMG_6700_p9uumu.png" loading="lazy" alt="Mercedes-Benz"><span>Mercedes-Benz</span></div>
+      <div class="brand-item"><img src="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779066495/IMG_6696_x3jciq.png" loading="lazy" alt="Nissan"><span>Nissan</span></div>
+      <div class="brand-item"><img src="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779066495/IMG_6704_swddbp.png" loading="lazy" alt="Kia"><span>Kia</span></div>
+      <div class="brand-item"><img src="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779066495/IMG_6697_eymgtl.png" loading="lazy" alt="Mitsubishi"><span>Mitsubishi</span></div>
     </div>
   </div>
 </div>
@@ -2026,6 +2034,295 @@ footer ul li a:hover { color: var(--red); }
 
 
 
+
+
+<!-- ==============================
+     CASOS REALES
+============================== -->
+<section id="casos" class="section-pad">
+  <div class="container">
+    <div class="casos-header fade-up">
+      <div class="label" style="margin-bottom:1rem">Resultados reales</div>
+      <h2 class="casos-title">Fallas que<br><span style="color:var(--red)">otros no pudieron</span><br>resolver.</h2>
+    </div>
+    <div class="casos-grid">
+
+      <div class="caso-card featured fade-up">
+        <div class="caso-tag">Toyota Hilux 2020 · Eléctrica</div>
+        <div class="caso-vehicle">Toyota Hilux 2020</div>
+        <div class="caso-step">
+          <div class="caso-step-label">// El problema</div>
+          <div class="caso-step-text">Check Engine intermitente. 3 talleres anteriores cambiaron sensores O2, bujías y bobinas sin resultado. El dueño gastó más de $800 sin solución.</div>
+        </div>
+        <div class="caso-step">
+          <div class="caso-step-label">// Nuestro diagnóstico</div>
+          <div class="caso-step-text">Con osciloscopio detectamos variación anormal en la señal del sensor de posición de árbol de levas. Falla intermitente invisible al escáner básico.</div>
+        </div>
+        <div class="caso-result">
+          <div class="caso-result-icon">✓</div>
+          <div>
+            <div class="caso-result-text">Reemplazamos solo el sensor CMP. Problema resuelto.</div>
+            <div class="caso-result-sub">Tiempo de diagnóstico: 2hs · Costo: $65 vs $800+ gastados antes</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="caso-card fade-up delay-1">
+        <div class="caso-tag">Ford Ranger 2019 · ECU</div>
+        <div class="caso-vehicle">Ford Ranger 2019</div>
+        <div class="caso-step">
+          <div class="caso-step-label">// El problema</div>
+          <div class="caso-step-text">Vehículo no arrancaba en frío. Otro taller recomendó cambiar la ECU completa ($1.200). El dueño buscó una segunda opinión.</div>
+        </div>
+        <div class="caso-step">
+          <div class="caso-step-label">// Nuestro diagnóstico</div>
+          <div class="caso-step-text">Lectura profunda de la ECU mostró corrupción en tabla de mapas de inyección por actualización de software fallida. ECU en perfectas condiciones físicas.</div>
+        </div>
+        <div class="caso-result">
+          <div class="caso-result-icon">✓</div>
+          <div>
+            <div class="caso-result-text">Reprogramación y recalibración de ECU. Arranca perfecto.</div>
+            <div class="caso-result-sub">Ahorro del cliente: $1.100 · Listo en el día</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="caso-card fade-up">
+        <div class="caso-tag">Mitsubishi L200 2018 · Mecánica</div>
+        <div class="caso-vehicle">Mitsubishi L200 2018</div>
+        <div class="caso-step">
+          <div class="caso-step-label">// El problema</div>
+          <div class="caso-step-text">Pérdida de potencia progresiva y humo negro al acelerar. Diagnóstico previo indicó turbo dañado ($900 de repuesto).</div>
+        </div>
+        <div class="caso-step">
+          <div class="caso-step-label">// Nuestro diagnóstico</div>
+          <div class="caso-step-text">Análisis de parámetros en tiempo real reveló válvula EGR atascada causando mezcla rica. Turbo completamente funcional.</div>
+        </div>
+        <div class="caso-result">
+          <div class="caso-result-icon">✓</div>
+          <div>
+            <div class="caso-result-text">Limpieza y calibración de EGR. Potencia restaurada al 100%.</div>
+            <div class="caso-result-sub">Ahorro: $850 · Sin reemplazar ninguna pieza mayor</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="caso-card fade-up delay-1">
+        <div class="caso-tag">Nissan Frontier 2021 · Intermitente</div>
+        <div class="caso-vehicle">Nissan Frontier 2021</div>
+        <div class="caso-step">
+          <div class="caso-step-label">// El problema</div>
+          <div class="caso-step-text">Apagones repentinos al frenar. Solo ocurría 1 de cada 10 veces. 4 talleres no pudieron reproducir ni diagnosticar la falla.</div>
+        </div>
+        <div class="caso-step">
+          <div class="caso-step-label">// Nuestro diagnóstico</div>
+          <div class="caso-step-text">Monitoreo con logger durante prueba de ruta. Detectamos microcorte en masa del módulo de frenos ABS bajo vibración específica.</div>
+        </div>
+        <div class="caso-result">
+          <div class="caso-result-icon">✓</div>
+          <div>
+            <div class="caso-result-text">Reparación del conector de masa. Falla eliminada permanentemente.</div>
+            <div class="caso-result-sub">Falla intermitente resuelta · Cliente con 6 meses sin inconvenientes</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div style="text-align:center;margin-top:2.5rem" class="fade-up">
+      <a href="https://wa.me/584242740585?text=Hola!%20Vi%20los%20casos%20reales%20y%20quiero%20consultar%20sobre%20mi%20veh%C3%ADculo." target="_blank" rel="noopener noreferrer" class="btn-primary">📱 Mi vehículo tiene una falla similar</a>
+    </div>
+  </div>
+</section>
+
+<!-- ==============================
+     TESTIMONIOS / RESEÑAS
+============================== -->
+<section id="testimonios" class="section-pad">
+  <div class="container">
+    <div class="testi-header fade-up">
+      <div class="label" style="justify-content:center;margin-bottom:1rem">Lo que dicen nuestros clientes</div>
+      <h2 class="testi-title">Reseñas reales</h2>
+      <p class="testi-sub">Clientes que llegaron con fallas que otros no pudieron resolver</p>
+    </div>
+    <div class="testi-grid">
+
+      <div class="testimonial fade-up">
+        <div class="testi-problem">Falla eléctrica · Toyota Hilux</div>
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">Fui a 3 talleres y nadie encontró el problema. En Valentino Motors en 2 horas me dijeron exactamente qué era y lo resolvieron. Increíble nivel de conocimiento.</p>
+        <div class="testi-author">
+          <div class="author-avatar">CR</div>
+          <div>
+            <div class="author-name">Carlos R.</div>
+            <div class="author-vehicle">Toyota Hilux 2020 · Catia La Mar</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial fade-up delay-1">
+        <div class="testi-problem">ECU · Ford Ranger</div>
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">Me iban a cobrar $1.200 por una ECU nueva. Valentino Motors la reprogramó por mucho menos. Ahorra mucho dinero viniendo acá antes de cambiar piezas.</p>
+        <div class="testi-author">
+          <div class="author-avatar">MP</div>
+          <div>
+            <div class="author-name">Miguel P.</div>
+            <div class="author-vehicle">Ford Ranger 2019 · La Guaira</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial fade-up delay-2">
+        <div class="testi-problem">Check Engine · Chevrolet Silverado</div>
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">Profesionales de verdad. Te explican todo lo que hacen, no te cobran de más y realmente saben lo que están haciendo. Mi camioneta lleva 4 meses perfecta.</p>
+        <div class="testi-author">
+          <div class="author-avatar">JM</div>
+          <div>
+            <div class="author-name">José M.</div>
+            <div class="author-vehicle">Chevrolet Silverado 2021 · Maiquetía</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial fade-up">
+        <div class="testi-problem">Falla intermitente · Nissan Frontier</div>
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">Tenía un apagón que nadie encontraba. Valentino Motors lo detectó con equipos que otros talleres no tienen. Honesto, transparente y muy capacitado.</p>
+        <div class="testi-author">
+          <div class="author-avatar">AL</div>
+          <div>
+            <div class="author-name">Ana L.</div>
+            <div class="author-vehicle">Nissan Frontier 2021 · Vargas</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial fade-up delay-1">
+        <div class="testi-problem">Pérdida de potencia · Mitsubishi L200</div>
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">Me salvaron de gastar $900 en un turbo que no necesitaba. El problema era la válvula EGR. Diagnóstico preciso que otros no hicieron en meses.</p>
+        <div class="testi-author">
+          <div class="author-avatar">RV</div>
+          <div>
+            <div class="author-name">Roberto V.</div>
+            <div class="author-vehicle">Mitsubishi L200 2018 · Caracas</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial fade-up delay-2">
+        <div class="testi-problem">Reprogramación · Toyota Land Cruiser</div>
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">Atención impecable. Conocen Toyota como nadie. Mi Land Cruiser tenía un problema de módulo que nadie quería tocar y acá lo resolvieron sin dramas.</p>
+        <div class="testi-author">
+          <div class="author-avatar">DG</div>
+          <div>
+            <div class="author-name">Diego G.</div>
+            <div class="author-vehicle">Toyota Land Cruiser 200 · La Guaira</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==============================
+     FAQ
+============================== -->
+<section id="faq" class="section-pad">
+  <div class="container">
+    <div class="faq-header fade-up">
+      <div class="label" style="margin-bottom:1rem">Preguntas frecuentes</div>
+      <h2 class="faq-title">Todo lo que<br>necesitás saber.</h2>
+    </div>
+    <div class="faq-grid">
+
+      <div class="faq-item" id="faq1">
+        <button class="faq-question" onclick="toggleFaq('faq1')">
+          ¿Cuánto cuesta el diagnóstico?
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>El costo del diagnóstico varía según la complejidad del vehículo y el tipo de falla. Antes de comenzar siempre te informamos el precio. Contanos tu caso por WhatsApp y te damos un estimado sin compromiso.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" id="faq2">
+        <button class="faq-question" onclick="toggleFaq('faq2')">
+          ¿Trabajan con todas las marcas?
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Sí. Nuestra especialidad es Toyota, pero trabajamos con todas las marcas del mercado: Ford, Chevrolet, Nissan, Mitsubishi, Volkswagen, Hyundai, Kia, Jeep, BMW, Mercedes-Benz y más.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" id="faq3">
+        <button class="faq-question" onclick="toggleFaq('faq3')">
+          ¿Qué pasa si ya fui a otro taller?
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Es exactamente para eso que existimos. Recibimos vehículos que otros talleres no pudieron resolver. Partimos desde cero con nuestro propio diagnóstico sin asumir conclusiones previas.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" id="faq4">
+        <button class="faq-question" onclick="toggleFaq('faq4')">
+          ¿Cuánto tiempo toma el diagnóstico?
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Un diagnóstico estándar toma entre 1 y 3 horas. Fallas eléctricas complejas o intermitentes pueden requerir más tiempo. Te avisamos el tiempo estimado al recibir el vehículo.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" id="faq5">
+        <button class="faq-question" onclick="toggleFaq('faq5')">
+          ¿Puedo pedir diagnóstico por WhatsApp?
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Podés contarnos los síntomas por WhatsApp y te orientamos, pero para un diagnóstico preciso el vehículo debe estar físicamente en el taller. Respondemos en menos de 30 minutos.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" id="faq6">
+        <button class="faq-question" onclick="toggleFaq('faq6')">
+          ¿Dónde están ubicados exactamente?
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Estamos en Catia La Mar, Estado Vargas, Venezuela — a 2 minutos de La Guaira. Escribinos por WhatsApp y te mandamos la ubicación exacta para que llegues sin problemas.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" id="faq7">
+        <button class="faq-question" onclick="toggleFaq('faq7')">
+          ¿Hacen trabajos mecánicos también?
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Nos especializamos en diagnóstico computarizado, fallas eléctricas y reprogramación ECU. Para trabajos mecánicos derivados del diagnóstico, coordinamos con talleres de confianza o lo resolvemos en casa.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" id="faq8">
+        <button class="faq-question" onclick="toggleFaq('faq8')">
+          ¿Tienen garantía en los trabajos?
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Sí. Todos nuestros trabajos tienen garantía. Si la falla diagnosticada reaparece por la misma causa dentro del período de garantía, la revisamos sin costo adicional.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- ==============================
      BOOKING — CTA WHATSAPP
 ============================== -->
@@ -2039,7 +2336,7 @@ footer ul li a:hover { color: var(--red); }
       <p style="color:var(--muted);font-size:0.92rem;font-weight:300;line-height:1.75;margin-bottom:2rem;max-width:480px;margin-left:auto;margin-right:auto">
         Respondemos en menos de 30 minutos. Contanos el problema y te orientamos antes de que vengas.
       </p>
-      <a href="https://wa.me/584242740585?text=Hola%20Valentino%20Motors%20LG!%20Quiero%20consultar%20sobre%20mi%20veh%C3%ADculo." target="_blank" style="
+      <a href="https://wa.me/584242740585?text=Hola%20Valentino%20Motors%20LG!%20Quiero%20consultar%20sobre%20mi%20veh%C3%ADculo." target="_blank" rel="noopener noreferrer" style="
         display:inline-flex;align-items:center;gap:14px;
         background:#25D366;color:white;
         font-family:var(--font-body);font-weight:700;
@@ -2076,10 +2373,10 @@ footer ul li a:hover { color: var(--red); }
         </div>
         <p>Diagnóstico preciso para vehículos que otros talleres no pudieron resolver. Especialistas en electrónica automotriz, ECU y camionetas en Catia La Mar, Venezuela.</p>
         <div class="footer-social">
-          <a href="https://www.instagram.com/valentinomotorslg/" target="_blank" class="social-btn" title="Instagram">
+          <a href="https://www.instagram.com/valentinomotorslg/" target="_blank" rel="noopener noreferrer" class="social-btn" title="Instagram">
             <svg width="16" height="16" viewBox="0 0 24 24" class="svg-icon"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
           </a>
-          <a href="https://wa.me/584242740585" target="_blank" class="social-btn" title="WhatsApp">
+          <a href="https://wa.me/584242740585" target="_blank" rel="noopener noreferrer" class="social-btn" title="WhatsApp">
             <svg width="16" height="16" viewBox="0 0 24 24" class="svg-icon"><path d="M3 21l1.65-3.8A9 9 0 1 1 12 21H3z"/><path d="M9 10c0 5 3.5 7.5 7.5 4.5"/></svg>
           </a>
         </div>
@@ -2114,7 +2411,7 @@ footer ul li a:hover { color: var(--red); }
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2025 Valentino Motors LG · Todos los derechos reservados</p>
+      <p>© 2025–2026 Valentino Motors LG · Todos los derechos reservados</p>
       <div class="footer-dot">Taller activo · Catia La Mar, Venezuela</div>
     </div>
   </div>
@@ -2127,7 +2424,11 @@ footer ul li a:hover { color: var(--red); }
 <style>
 /* ── CHATBOT LAUNCHER ── */
 .vml-launcher {
-  position: fixed; bottom: 2rem; right: 2rem; z-index: 600;
+  position: fixed;
+  bottom: 2rem;
+  bottom: calc(2rem + env(safe-area-inset-bottom, 0px));
+  right: 2rem;
+  z-index: 600;
   display: flex; flex-direction: column; align-items: flex-end; gap: 12px;
 }
 .vml-launch-btn {
@@ -2167,7 +2468,7 @@ footer ul li a:hover { color: var(--red); }
 /* ── CHAT WINDOW ── */
 .vml-window {
   position: fixed; bottom: 7rem; right: 2rem; z-index: 599;
-  width: 360px; height: 560px; max-height: calc(100vh - 9rem);
+  width: 360px; height: 560px; max-height: calc(100dvh - 9rem);
   background: var(--graphite);
   border: 1px solid var(--border);
   display: flex; flex-direction: column;
@@ -2328,7 +2629,7 @@ footer ul li a:hover { color: var(--red); }
   flex: 1; background: var(--graphite2);
   border: 1px solid var(--border);
   color: var(--white); font-family: var(--font-body);
-  font-size: 0.83rem; padding: 9px 12px;
+  font-size: 16px; padding: 9px 12px;
   outline: none; border-radius: 2px;
   transition: border-color 0.2s;
 }
@@ -2927,6 +3228,540 @@ function scrollBottom() {
   requestAnimationFrame(() => {
     vmlMessages.scrollTop = vmlMessages.scrollHeight;
   });
+}
+</script>
+
+<!-- ════════════════════════════════════════════
+     PÁGINAS INTERNAS (menú hamburguesa)
+════════════════════════════════════════════ -->
+<style>
+/* ── PAGE OVERLAY SYSTEM ── */
+.ipage-overlay {
+  position: fixed; inset: 0; z-index: 1000;
+  background: var(--black);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  transform: translateX(100%);
+  transition: transform 0.38s cubic-bezier(0.23,1,0.32,1);
+  will-change: transform;
+}
+.ipage-overlay.active {
+  transform: translateX(0);
+}
+.ipage-topbar {
+  position: sticky; top: 0; z-index: 10;
+  height: 58px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 1.8rem;
+  background: rgba(6,6,8,0.96);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+.ipage-logo {
+  display: flex; align-items: center; gap: 9px;
+  text-decoration: none; color: var(--white);
+}
+.ipage-logo-mark {
+  width: 28px; height: 28px; background: var(--red);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 9px; color: white;
+}
+.ipage-logo-name { font-weight: 700; font-size: 0.88rem; }
+.ipage-back {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: var(--graphite2); border: 1px solid var(--border);
+  color: var(--muted); font-size: 0.78rem; font-weight: 500;
+  padding: 7px 14px; cursor: pointer; text-decoration: none;
+  letter-spacing: 0.04em; transition: border-color 0.2s, color 0.2s;
+}
+.ipage-back:hover { border-color: var(--border-red); color: var(--white); }
+.ipage-hero {
+  position: relative; padding: 70px 0 50px;
+  border-bottom: 1px solid var(--border); overflow: hidden;
+}
+.ipage-hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(232,0,15,0.07) 0%, transparent 60%);
+  pointer-events: none;
+}
+.ipage-grid-bg {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(232,0,15,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(232,0,15,0.025) 1px, transparent 1px);
+  background-size: 48px 48px; pointer-events: none;
+}
+.ipage-hero-inner { position: relative; z-index: 2; max-width: 1100px; margin: 0 auto; padding: 0 1.8rem; }
+.ipage-label {
+  font-family: var(--font-mono); font-size: 0.63rem; color: var(--red);
+  letter-spacing: 0.2em; text-transform: uppercase;
+  display: flex; align-items: center; gap: 10px; margin-bottom: 1rem;
+}
+.ipage-label::before { content: ''; display: block; width: 18px; height: 1px; background: var(--red); }
+.ipage-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  line-height: 0.95; letter-spacing: 0.01em; margin-bottom: 1rem;
+}
+.ipage-title .acc { color: var(--red); }
+.ipage-sub {
+  font-size: clamp(0.9rem, 1.4vw, 1rem); color: var(--muted);
+  max-width: 520px; line-height: 1.75; font-weight: 300;
+}
+.ipage-body { max-width: 1100px; margin: 0 auto; padding: 60px 1.8rem; }
+
+/* Stats row */
+.ip-stats {
+  display: flex; flex-wrap: wrap; gap: 0;
+  background: var(--graphite); border: 1px solid var(--border);
+  margin-bottom: 3rem;
+}
+.ip-stat {
+  flex: 1; min-width: 130px; padding: 1.6rem 1.2rem;
+  border-right: 1px solid var(--border); text-align: center;
+}
+.ip-stat:last-child { border-right: none; }
+.ip-stat-num { font-family: var(--font-display); font-size: 2.4rem; color: var(--red); line-height: 1; display: block; }
+.ip-stat-label { font-family: var(--font-mono); font-size: 0.6rem; color: var(--muted); letter-spacing: 0.13em; text-transform: uppercase; margin-top: 0.3rem; display: block; }
+
+/* Section heading */
+.ip-heading { margin-bottom: 2rem; }
+.ip-heading h2 { font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 3rem); line-height: 1; margin-bottom: 0.5rem; }
+.ip-heading h2 span { color: var(--red); }
+.ip-heading p { color: var(--muted); font-size: 0.9rem; font-weight: 300; line-height: 1.7; max-width: 560px; }
+
+/* Cards grid */
+.ip-cards {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1px; background: var(--border); border: 1px solid var(--border); margin-bottom: 2.5rem;
+}
+.ip-card {
+  background: var(--graphite); padding: 1.8rem;
+  position: relative; overflow: hidden; transition: background 0.3s;
+}
+.ip-card::after {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(circle at 10% 90%, rgba(232,0,15,0.08), transparent 60%);
+  opacity: 0; transition: opacity 0.3s;
+}
+.ip-card:hover { background: var(--graphite2); }
+.ip-card:hover::after { opacity: 1; }
+.ip-card-icon { font-size: 2rem; margin-bottom: 0.8rem; display: block; }
+.ip-card-num { font-family: var(--font-display); font-size: 2.8rem; color: rgba(232,0,15,0.1); position: absolute; top: 0.8rem; right: 1rem; line-height: 1; }
+.ip-card-tag { font-family: var(--font-mono); font-size: 0.6rem; color: var(--red); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.5rem; display: block; }
+.ip-card-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.5rem; line-height: 1.3; }
+.ip-card-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.65; }
+.ip-card-result {
+  display: flex; align-items: flex-start; gap: 8px;
+  background: rgba(0,217,126,0.07); border: 1px solid rgba(0,217,126,0.2);
+  padding: 8px 12px; margin-top: 1rem;
+  font-size: 0.78rem; color: var(--green);
+}
+
+/* Steps */
+.ip-steps { margin-bottom: 2.5rem; }
+.ip-step { display: flex; gap: 1.2rem; padding: 1.8rem 0; border-bottom: 1px solid var(--border); }
+.ip-step:last-child { border-bottom: none; }
+.ip-step-num { font-family: var(--font-display); font-size: 3rem; color: var(--border-red); line-height: 1; flex-shrink: 0; width: 52px; text-align: right; transition: color 0.3s; }
+.ip-step:hover .ip-step-num { color: var(--red); }
+.ip-step-tag { font-family: var(--font-mono); font-size: 0.6rem; color: var(--red); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.3rem; }
+.ip-step-title { font-weight: 700; font-size: 1rem; margin-bottom: 0.4rem; }
+.ip-step-desc { font-size: 0.84rem; color: var(--muted); line-height: 1.65; }
+
+/* Valores grid */
+.ip-valores { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.2rem; margin-bottom: 2.5rem; }
+.ip-valor { background: var(--graphite2); border: 1px solid var(--border); padding: 1.5rem; display: flex; gap: 1rem; align-items: flex-start; transition: border-color 0.3s; }
+.ip-valor:hover { border-color: var(--border-red); }
+.ip-valor-icon { font-size: 1.8rem; flex-shrink: 0; }
+.ip-valor-title { font-weight: 700; font-size: 0.92rem; margin-bottom: 0.25rem; }
+.ip-valor-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.55; }
+
+/* Caso cards */
+.ip-casos { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.4rem; margin-bottom: 2.5rem; }
+.ip-caso {
+  background: var(--graphite); border: 1px solid var(--border);
+  padding: 1.8rem; position: relative; transition: border-color 0.3s;
+}
+.ip-caso:hover { border-color: var(--border-red); }
+.ip-caso.featured { border-color: var(--border-red); background: linear-gradient(135deg, rgba(232,0,15,0.05) 0%, var(--graphite) 50%); }
+.ip-caso.featured::before { content: '★ Destacado'; position: absolute; top: -1px; right: 1.2rem; background: var(--red); color: white; font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 3px 9px; }
+.ip-caso-vehicle { font-family: var(--font-display); font-size: 1.6rem; color: var(--white); line-height: 1; margin-bottom: 1.2rem; }
+.ip-caso-tag { font-family: var(--font-mono); font-size: 0.6rem; color: var(--red); letter-spacing: 0.13em; text-transform: uppercase; margin-bottom: 0.4rem; display: block; }
+.ip-caso-label { font-family: var(--font-mono); font-size: 0.58rem; color: var(--muted2); letter-spacing: 0.13em; text-transform: uppercase; margin-bottom: 0.3rem; }
+.ip-caso-text { font-size: 0.83rem; color: var(--muted); line-height: 1.62; margin-bottom: 1rem; }
+.ip-caso-result { display: flex; align-items: flex-start; gap: 10px; background: rgba(0,217,126,0.07); border: 1px solid rgba(0,217,126,0.22); padding: 0.9rem 1rem; margin-top: 0.5rem; }
+.ip-caso-result-icon { width: 22px; height: 22px; background: rgba(0,217,126,0.12); border: 1px solid rgba(0,217,126,0.28); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: var(--green); flex-shrink: 0; }
+.ip-caso-result-text { font-size: 0.83rem; color: var(--green); font-weight: 600; line-height: 1.35; }
+.ip-caso-result-sub { font-size: 0.75rem; color: rgba(0,217,126,0.55); margin-top: 0.2rem; }
+
+/* Testimonials */
+.ip-testis { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 1.2rem; margin-bottom: 2.5rem; }
+.ip-testi { background: var(--graphite2); border: 1px solid var(--border); padding: 1.6rem; position: relative; }
+.ip-testi::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--red), transparent); }
+.ip-testi-tag { font-family: var(--font-mono); font-size: 0.6rem; color: var(--muted); letter-spacing: 0.13em; text-transform: uppercase; margin-bottom: 0.5rem; display: block; }
+.ip-testi-stars { color: #FFB800; font-size: 0.88rem; margin-bottom: 0.7rem; }
+.ip-testi-quote { font-size: 0.85rem; color: rgba(245,245,248,0.8); line-height: 1.65; font-style: italic; margin-bottom: 1.1rem; }
+.ip-testi-author { display: flex; align-items: center; gap: 9px; }
+.ip-testi-avatar { width: 34px; height: 34px; border-radius: 50%; background: var(--red-dim); border: 1px solid var(--border-red); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 0.62rem; color: var(--red); flex-shrink: 0; }
+.ip-testi-name { font-size: 0.82rem; font-weight: 600; }
+.ip-testi-vehicle { font-size: 0.7rem; color: var(--muted); }
+
+/* FAQ */
+.ip-faq { margin-bottom: 2.5rem; max-width: 740px; }
+.ip-faq-item { border-bottom: 1px solid var(--border); }
+.ip-faq-btn { width: 100%; background: none; border: none; padding: 1.2rem 0; display: flex; justify-content: space-between; align-items: center; color: var(--white); font-family: var(--font-body); font-size: 0.93rem; font-weight: 600; cursor: pointer; text-align: left; gap: 1rem; transition: color 0.2s; }
+.ip-faq-btn:hover { color: var(--red); }
+.ip-faq-icon { font-size: 1.2rem; color: var(--red); flex-shrink: 0; font-weight: 300; transition: transform 0.3s; }
+.ip-faq-item.open .ip-faq-icon { transform: rotate(45deg); }
+.ip-faq-body { max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.25s; }
+.ip-faq-item.open .ip-faq-body { max-height: 280px; padding-bottom: 1.1rem; }
+.ip-faq-body p { font-size: 0.86rem; color: var(--muted); line-height: 1.7; }
+
+/* Video embed */
+.ip-video { position: relative; overflow: hidden; border: 1px solid var(--border); margin: 2rem 0; }
+.ip-video video { width: 100%; display: block; filter: saturate(0.9); max-height: 400px; object-fit: cover; }
+.ip-video-label { position: absolute; top: 0.8rem; left: 0.8rem; background: rgba(6,6,8,0.8); font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.13em; text-transform: uppercase; color: var(--red); padding: 4px 9px; border: 1px solid var(--border-red); }
+
+/* Divider */
+.ip-divider { width: 100%; height: 1px; background: var(--border); margin: 2.5rem 0; }
+
+/* CTA block */
+.ip-cta { background: linear-gradient(135deg, rgba(232,0,15,0.12) 0%, rgba(232,0,15,0.04) 100%); border: 1px solid var(--border-red); padding: 2.5rem 2rem; text-align: center; margin-top: 2.5rem; }
+.ip-cta-title { font-family: var(--font-display); font-size: clamp(1.7rem, 3.5vw, 2.6rem); margin-bottom: 0.7rem; line-height: 1; }
+.ip-cta-title span { color: var(--red); }
+.ip-cta-sub { color: var(--muted); font-weight: 300; margin-bottom: 1.6rem; font-size: 0.9rem; }
+.ip-btn-wa { display: inline-flex; align-items: center; gap: 10px; background: #25D366; color: white; font-weight: 700; font-size: 0.88rem; letter-spacing: 0.05em; padding: 14px 28px; text-decoration: none; clip-path: polygon(0 0, calc(100% - 9px) 0, 100% 9px, 100% 100%, 9px 100%, 0 calc(100% - 9px)); transition: opacity 0.2s; }
+.ip-btn-wa:hover { opacity: 0.88; }
+.ip-btn-volver { display: inline-flex; align-items: center; gap: 7px; background: transparent; color: var(--muted); border: 1px solid var(--border); font-size: 0.8rem; font-weight: 500; padding: 13px 24px; cursor: pointer; margin-left: 0.8rem; clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px)); transition: border-color 0.2s, color 0.2s; }
+.ip-btn-volver:hover { border-color: var(--border-red); color: var(--white); }
+
+/* Comparativa table */
+.ip-comp { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); margin-bottom: 2.5rem; }
+.ip-comp-col { background: var(--graphite); padding: 1.4rem; }
+.ip-comp-col.good { background: var(--graphite2); position: relative; overflow: hidden; }
+.ip-comp-col.good::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--red), transparent); }
+.ip-comp-head { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.13em; text-transform: uppercase; margin-bottom: 0.9rem; }
+.ip-comp-row { font-size: 0.83rem; display: flex; gap: 9px; align-items: flex-start; margin-bottom: 0.6rem; }
+
+@media (max-width: 640px) {
+  .ipage-body { padding: 40px 1.2rem; }
+  .ipage-hero { padding: 50px 0 35px; }
+  .ipage-hero-inner { padding: 0 1.2rem; }
+  .ip-stats { flex-direction: column; }
+  .ip-stat { border-right: none; border-bottom: 1px solid var(--border); }
+  .ip-stat:last-child { border-bottom: none; }
+  .ip-comp { grid-template-columns: 1fr; }
+  .ip-cta { padding: 1.8rem 1.2rem; }
+  .ip-btn-volver { margin-left: 0; margin-top: 0.7rem; }
+}
+</style>
+
+<!-- ══ WA ICON SVG helper ══ -->
+<template id="wa-icon">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</template>
+
+<!-- ══════════════════════════════════
+     PAGE: NOSOTROS
+══════════════════════════════════ -->
+<div class="ipage-overlay" id="ipage-nosotros" role="dialog" aria-modal="true" aria-label="Nosotros">
+  <div class="ipage-topbar">
+    <div class="ipage-logo"><div class="ipage-logo-mark">VML</div><span class="ipage-logo-name">Valentino Motors LG</span></div>
+    <button class="ipage-back" onclick="closePage()">← Volver</button>
+  </div>
+  <div class="ipage-hero">
+    <div class="ipage-grid-bg"></div>
+    <div class="ipage-hero-inner">
+      <div class="ipage-label">Quiénes somos</div>
+      <h2 class="ipage-title">El taller que resuelve<br><span class="acc">lo que otros no pueden.</span></h2>
+      <p class="ipage-sub">Más de 5 años resolviendo fallas complejas que otros talleres no pudieron detectar, en Catia La Mar, Venezuela.</p>
+    </div>
+  </div>
+  <div class="ipage-body">
+    <div class="ip-stats">
+      <div class="ip-stat"><span class="ip-stat-num">15K+</span><span class="ip-stat-label">Seguidores Instagram</span></div>
+      <div class="ip-stat"><span class="ip-stat-num">500+</span><span class="ip-stat-label">Vehículos atendidos</span></div>
+      <div class="ip-stat"><span class="ip-stat-num">98%</span><span class="ip-stat-label">Diagnósticos exitosos</span></div>
+      <div class="ip-stat"><span class="ip-stat-num">5+</span><span class="ip-stat-label">Años de experiencia</span></div>
+    </div>
+    <div class="ip-heading"><h2>Nuestra <span>misión</span></h2><p>Valentino Motors LG nació con una misión clara: devolverte la tranquilidad cuando tu vehículo falla y nadie encuentra la causa.</p></div>
+    <p style="color:var(--muted);font-size:0.9rem;line-height:1.8;margin-bottom:1.4rem">Somos un centro de diagnóstico automotriz especializado en Catia La Mar. Trabajamos con tecnología de última generación — escáner multimarca, osciloscopio automotriz y software especializado — para encontrar la causa raíz real. Antes de tocar una sola pieza, sabemos exactamente qué falla y por qué.</p>
+    <p style="color:var(--muted);font-size:0.9rem;line-height:1.8;margin-bottom:2rem">Nuestra especialidad número uno es <strong style="color:var(--white)">Toyota</strong> — Hilux, Land Cruiser, Fortuner, Corolla, Camry. Pero trabajamos con todas las marcas del mercado con el mismo nivel de precisión: Ford, Chevrolet, Nissan, Mitsubishi, Volkswagen, Hyundai, Kia, Jeep, BMW, Mercedes-Benz y más.</p>
+    <div class="ip-video"><div class="ip-video-label">// En acción</div><video autoplay muted loop playsinline><source src="https://res.cloudinary.com/dvvuwigmy/video/upload/v1779062127/insta_video_70029_qgjy1s.mp4" type="video/mp4"></video></div>
+    <div class="ip-divider"></div>
+    <div class="ip-heading"><h2>Nuestros <span>valores</span></h2><p>Tres principios que guían cada trabajo que hacemos.</p></div>
+    <div class="ip-valores">
+      <div class="ip-valor"><div class="ip-valor-icon">🎯</div><div><div class="ip-valor-title">Diagnóstico primero</div><div class="ip-valor-desc">No cambiamos piezas sin saber la causa exacta. Primero medimos, después actuamos.</div></div></div>
+      <div class="ip-valor"><div class="ip-valor-icon">🔬</div><div><div class="ip-valor-title">Tecnología real</div><div class="ip-valor-desc">Escáner profesional multimarca + osciloscopio de cuatro canales. No suposiciones: datos.</div></div></div>
+      <div class="ip-valor"><div class="ip-valor-icon">🤝</div><div><div class="ip-valor-title">Trato directo</div><div class="ip-valor-desc">Hablás siempre con el especialista, sin intermediarios. Transparencia total.</div></div></div>
+      <div class="ip-valor"><div class="ip-valor-icon">🛡️</div><div><div class="ip-valor-title">Garantía en cada trabajo</div><div class="ip-valor-desc">Si la falla vuelve por la misma causa, la revisamos sin costo adicional.</div></div></div>
+      <div class="ip-valor"><div class="ip-valor-icon">⚡</div><div><div class="ip-valor-title">Respuesta en &lt;30 min</div><div class="ip-valor-desc">Respondemos tu consulta por WhatsApp en menos de 30 minutos.</div></div></div>
+      <div class="ip-valor"><div class="ip-valor-icon">💰</div><div><div class="ip-valor-title">Ahorro real</div><div class="ip-valor-desc">Evitamos cambiar piezas innecesarias. Primero sabemos qué falla, después cotizamos.</div></div></div>
+    </div>
+    <div class="ip-cta">
+      <div class="ip-cta-title">¿Querés conocernos<br><span>en persona?</span></div>
+      <p class="ip-cta-sub">Estamos en Catia La Mar, Edo. Vargas. Escribinos y te mandamos la ubicación exacta.</p>
+      <a href="https://wa.me/584242740585?text=Hola%20Valentino%20Motors%20LG!%20Quiero%20conocer%20el%20taller." target="_blank" rel="noopener noreferrer" class="ip-btn-wa">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Hablar por WhatsApp
+      </a>
+      <button class="ip-btn-volver" onclick="closePage()">← Volver al inicio</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     PAGE: TU PROBLEMA
+══════════════════════════════════ -->
+<div class="ipage-overlay" id="ipage-tu-problema" role="dialog" aria-modal="true" aria-label="Tu problema">
+  <div class="ipage-topbar">
+    <div class="ipage-logo"><div class="ipage-logo-mark">VML</div><span class="ipage-logo-name">Valentino Motors LG</span></div>
+    <button class="ipage-back" onclick="closePage()">← Volver</button>
+  </div>
+  <div class="ipage-hero">
+    <div class="ipage-grid-bg"></div>
+    <div class="ipage-hero-inner">
+      <div class="ipage-label">¿Te identificás?</div>
+      <h2 class="ipage-title">¿Tu vehículo falla<br>y nadie sabe <span class="acc">por qué?</span></h2>
+      <p class="ipage-sub">Estos son los problemas que resolvemos todos los días. Si te suena familiar, estás en el lugar indicado.</p>
+    </div>
+  </div>
+  <div class="ipage-body">
+    <div class="ip-heading"><h2>Situaciones que <span>resolvemos</span></h2><p>No sos el único. Estos casos llegan a nosotros todo el tiempo — y siempre encontramos la causa.</p></div>
+    <div class="ip-cards">
+      <div class="ip-card"><span class="ip-card-icon">🔴</span><div class="ip-card-title">El Check Engine vuelve y vuelve</div><div class="ip-card-desc">Cambiaste sensores, bujías, cables… y la luz sigue encendida. El problema real no es la pieza: es que nadie leyó el sistema correctamente.</div><div class="ip-card-result">✓ Con escáner profesional leemos todos los módulos y encontramos la causa raíz.</div></div>
+      <div class="ip-card"><span class="ip-card-icon">⚡</span><div class="ip-card-title">Fallas eléctricas que nadie encuentra</div><div class="ip-card-desc">La camioneta se apaga sola, las luces parpadean, el ABS da errores sin razón aparente. Fallas intermitentes que desaparecen en el taller.</div><div class="ip-card-result">✓ Osciloscopio: capturamos la falla en tiempo real, incluso las intermitentes.</div></div>
+      <div class="ip-card"><span class="ip-card-icon">💸</span><div class="ip-card-title">Te recomendaron cambiar la ECU completa</div><div class="ip-card-desc">Cotización de $800 o $1.200 por una ECU nueva. Antes de gastar eso, dejanos revisarla. En la mayoría de casos no hay que cambiarla.</div><div class="ip-card-result">✓ Leemos, reprogramamos y calibramos ECUs. La mayoría se resuelve por mucho menos.</div></div>
+      <div class="ip-card"><span class="ip-card-icon">📉</span><div class="ip-card-title">Pérdida de potencia inexplicable</div><div class="ip-card-desc">El motor ya no jala como antes. Dijeron "turbo dañado", "inyectores tapados"… cambiaron piezas y el problema siguió igual.</div><div class="ip-card-result">✓ Medimos parámetros en tiempo real antes de recomendar cualquier repuesto.</div></div>
+      <div class="ip-card"><span class="ip-card-icon">🔁</span><div class="ip-card-title">Recorriste varios talleres sin solución</div><div class="ip-card-desc">Fuiste a 2, 3, 4 talleres. Cada uno te dijo algo diferente. Gastaste dinero y el vehículo sigue igual o peor.</div><div class="ip-card-result">✓ Para eso existimos. Empezamos desde cero sin asumir conclusiones previas.</div></div>
+      <div class="ip-card"><span class="ip-card-icon">🛻</span><div class="ip-card-title">Nadie quiere tocar tu camioneta</div><div class="ip-card-desc">Vehículos modernos, sistemas diesel complejos, módulos que pocos conocen. Te dicen "eso no lo manejamos".</div><div class="ip-card-result">✓ Nos especializamos en camionetas. Hilux, Land Cruiser, Ranger, Frontier, L200 y más.</div></div>
+    </div>
+    <div class="ip-divider"></div>
+    <div class="ip-heading"><h2>La diferencia está en el <span>método</span></h2><p>No adivinamos. No cambiamos piezas al azar. Diagnosticamos primero.</p></div>
+    <div class="ip-steps">
+      <div class="ip-step"><div class="ip-step-num">01</div><div><div class="ip-step-tag">// Escáner completo</div><div class="ip-step-title">Leemos todos los módulos del vehículo</div><div class="ip-step-desc">No solo el motor. Motor, transmisión, ABS, airbags, BCM, TCM — leemos todo para tener el panorama real. Muchas fallas se originan en módulos que los talleres comunes no revisan.</div></div></div>
+      <div class="ip-step"><div class="ip-step-num">02</div><div><div class="ip-step-tag">// Osciloscopio</div><div class="ip-step-title">Medimos señales en tiempo real</div><div class="ip-step-desc">Las fallas eléctricas intermitentes no siempre aparecen en el escáner. Con el osciloscopio vemos la señal eléctrica de cada sensor y detectamos variaciones invisibles al escáner básico.</div></div></div>
+      <div class="ip-step"><div class="ip-step-num">03</div><div><div class="ip-step-tag">// Diagnóstico certero</div><div class="ip-step-title">Sabemos exactamente qué falla antes de tocar una pieza</div><div class="ip-step-desc">Solo después de confirmar la causa raíz te informamos qué se necesita cambiar o reparar, y por qué. Sin suposiciones. Sin piezas cambiadas de más.</div></div></div>
+      <div class="ip-step"><div class="ip-step-num">04</div><div><div class="ip-step-tag">// Solución garantizada</div><div class="ip-step-title">Resolvemos el problema con garantía</div><div class="ip-step-desc">Una vez identificada la causa, la reparación es precisa. Todos nuestros trabajos tienen garantía.</div></div></div>
+    </div>
+    <div class="ip-cta">
+      <div class="ip-cta-title">¿Tu vehículo tiene<br><span>alguno de estos problemas?</span></div>
+      <p class="ip-cta-sub">Contanos los síntomas por WhatsApp. Respondemos en menos de 30 minutos.</p>
+      <a href="https://wa.me/584242740585?text=Hola%20Valentino%20Motors%20LG!%20Mi%20veh%C3%ADculo%20tiene%20un%20problema%20que%20otros%20talleres%20no%20pudieron%20resolver." target="_blank" rel="noopener noreferrer" class="ip-btn-wa"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Consultar mi caso</a>
+      <button class="ip-btn-volver" onclick="closePage()">← Volver al inicio</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     PAGE: SERVICIOS
+══════════════════════════════════ -->
+<div class="ipage-overlay" id="ipage-servicios" role="dialog" aria-modal="true" aria-label="Servicios">
+  <div class="ipage-topbar">
+    <div class="ipage-logo"><div class="ipage-logo-mark">VML</div><span class="ipage-logo-name">Valentino Motors LG</span></div>
+    <button class="ipage-back" onclick="closePage()">← Volver</button>
+  </div>
+  <div class="ipage-hero">
+    <div class="ipage-grid-bg"></div>
+    <div class="ipage-hero-inner">
+      <div class="ipage-label">Soluciones que ofrecemos</div>
+      <h2 class="ipage-title">No vendemos tecnología.<br><span class="acc">Vendemos soluciones.</span></h2>
+      <p class="ipage-sub">Cada servicio está orientado a resolver tu problema real. Sin diagnósticos genéricos. Sin cambiar piezas a ciegas.</p>
+    </div>
+  </div>
+  <div class="ipage-body">
+    <div class="ip-cards" style="grid-template-columns:repeat(auto-fill,minmax(300px,1fr))">
+      <div class="ip-card"><span class="ip-card-num">01</span><span class="ip-card-icon">🖥️</span><span class="ip-card-tag">Ahorro garantizado</span><div class="ip-card-title">Escáner Multimarca Completo</div><div class="ip-card-desc">Leemos todos los módulos del vehículo — motor, transmisión, ABS, airbags, BCM y más. Identificamos la causa raíz antes de tocar una sola pieza.</div><div class="ip-card-result">✓ Compatible con todas las marcas del mercado.</div></div>
+      <div class="ip-card"><span class="ip-card-num">02</span><span class="ip-card-icon">⚡</span><span class="ip-card-tag">Fallas eléctricas resueltas</span><div class="ip-card-title">Diagnóstico Eléctrico con Osciloscopio</div><div class="ip-card-desc">Fallas intermitentes, cortocircuitos, módulos que se resetean. Osciloscopio automotriz de cuatro canales. No adivinamos: medimos la señal en tiempo real.</div><div class="ip-card-result">✓ Detectamos fallas que el escáner básico no puede ver.</div></div>
+      <div class="ip-card"><span class="ip-card-num">03</span><span class="ip-card-icon">🔧</span><span class="ip-card-tag">ECU lista para rodar</span><div class="ip-card-title">Reprogramación de ECU</div><div class="ip-card-desc">Programación, calibración y codificación de módulos. Antes de cambiar la ECU completa, dejanos revisarla. En la mayoría de casos se puede reprogramar.</div><div class="ip-card-result">✓ Clientes ahorran entre $600 y $1.200 evitando cambio innecesario.</div></div>
+      <div class="ip-card"><span class="ip-card-num">04</span><span class="ip-card-icon">⚙️</span><span class="ip-card-tag">Más potencia, menos gasto</span><div class="ip-card-title">Mecánica Especializada en Camionetas</div><div class="ip-card-desc">Siempre respaldado por escáner previo. Especialidad Toyota — Hilux, Land Cruiser, Fortuner, Corolla, Camry — pero atendemos todas las marcas.</div><div class="ip-card-result">✓ Nunca recomendamos una reparación sin saber exactamente qué falla.</div></div>
+      <div class="ip-card"><span class="ip-card-num">05</span><span class="ip-card-icon">🏎️</span><span class="ip-card-tag">Performance real</span><div class="ip-card-title">Optimización de Motor</div><div class="ip-card-desc">Ajuste de mapas de combustible, inyección y rendimiento. Más potencia, menos consumo. Medición real de resultados antes y después.</div><div class="ip-card-result">✓ Resultados medibles antes y después de cada trabajo.</div></div>
+      <div class="ip-card"><span class="ip-card-num">06</span><span class="ip-card-icon">🛡️</span><span class="ip-card-tag">Prevenís antes de que pase</span><div class="ip-card-title">Service Preventivo Completo</div><div class="ip-card-desc">Revisión de todos los sistemas con escáner. Identificamos problemas potenciales antes de que se conviertan en fallas costosas.</div><div class="ip-card-result">✓ Evitás quedar varado o pagar reparaciones de emergencia.</div></div>
+    </div>
+    <div class="ip-divider"></div>
+    <div class="ip-heading"><h2>¿Por qué elegirnos a <span>nosotros?</span></h2></div>
+    <div class="ip-comp">
+      <div class="ip-comp-col"><div class="ip-comp-head" style="color:var(--muted)">// Otros talleres</div><div class="ip-comp-row" style="color:var(--muted)"><span style="color:#555;flex-shrink:0">✗</span> Escáner básico solo en motor</div><div class="ip-comp-row" style="color:var(--muted)"><span style="color:#555;flex-shrink:0">✗</span> Cambian piezas "por prueba"</div><div class="ip-comp-row" style="color:var(--muted)"><span style="color:#555;flex-shrink:0">✗</span> Sin osciloscopio profesional</div><div class="ip-comp-row" style="color:var(--muted)"><span style="color:#555;flex-shrink:0">✗</span> "Habría que cambiar la ECU"</div><div class="ip-comp-row" style="color:var(--muted)"><span style="color:#555;flex-shrink:0">✗</span> Sin garantía en el diagnóstico</div></div>
+      <div class="ip-comp-col good"><div class="ip-comp-head" style="color:var(--red)">// Valentino Motors LG</div><div class="ip-comp-row"><span style="color:var(--green);flex-shrink:0">✓</span> Todos los módulos del vehículo</div><div class="ip-comp-row"><span style="color:var(--green);flex-shrink:0">✓</span> Diagnóstico certero antes de actuar</div><div class="ip-comp-row"><span style="color:var(--green);flex-shrink:0">✓</span> Osciloscopio de 4 canales</div><div class="ip-comp-row"><span style="color:var(--green);flex-shrink:0">✓</span> Reprogramamos antes de cambiar</div><div class="ip-comp-row"><span style="color:var(--green);flex-shrink:0">✓</span> Garantía en cada trabajo</div></div>
+    </div>
+    <div class="ip-cta">
+      <div class="ip-cta-title">¿Cuál servicio<br><span>necesitás?</span></div>
+      <p class="ip-cta-sub">Contanos tu caso y en menos de 30 minutos te orientamos sin compromiso.</p>
+      <a href="https://wa.me/584242740585?text=Hola%20Valentino%20Motors%20LG!%20Quiero%20consultar%20sobre%20un%20servicio." target="_blank" rel="noopener noreferrer" class="ip-btn-wa"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Consultar servicio</a>
+      <button class="ip-btn-volver" onclick="closePage()">← Volver al inicio</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     PAGE: CASOS REALES
+══════════════════════════════════ -->
+<div class="ipage-overlay" id="ipage-casos" role="dialog" aria-modal="true" aria-label="Casos reales">
+  <div class="ipage-topbar">
+    <div class="ipage-logo"><div class="ipage-logo-mark">VML</div><span class="ipage-logo-name">Valentino Motors LG</span></div>
+    <button class="ipage-back" onclick="closePage()">← Volver</button>
+  </div>
+  <div class="ipage-hero">
+    <div class="ipage-grid-bg"></div>
+    <div class="ipage-hero-inner">
+      <div class="ipage-label">Resultados reales</div>
+      <h2 class="ipage-title">Fallas que otros<br><span class="acc">no pudieron resolver.</span></h2>
+      <p class="ipage-sub">Casos documentados de vehículos que llegaron con diagnósticos fallidos y se fueron con el problema resuelto.</p>
+    </div>
+  </div>
+  <div class="ipage-body">
+    <div class="ip-stats">
+      <div class="ip-stat"><span class="ip-stat-num">500+</span><span class="ip-stat-label">Casos resueltos</span></div>
+      <div class="ip-stat"><span class="ip-stat-num">98%</span><span class="ip-stat-label">Éxito en diagnósticos</span></div>
+      <div class="ip-stat"><span class="ip-stat-num">$1k+</span><span class="ip-stat-label">Ahorro promedio</span></div>
+      <div class="ip-stat"><span class="ip-stat-num">3+</span><span class="ip-stat-label">Talleres previos promedio</span></div>
+    </div>
+    <div class="ip-casos">
+      <div class="ip-caso featured">
+        <span class="ip-caso-tag">Toyota Hilux 2020 · Eléctrica</span>
+        <div class="ip-caso-vehicle">Toyota Hilux 2020</div>
+        <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(0,217,126,0.1);border:1px solid rgba(0,217,126,0.2);padding:3px 10px;font-family:var(--font-mono);font-size:0.62rem;color:var(--green);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem">💰 Ahorro: $735</div>
+        <div class="ip-caso-label">// El problema</div><div class="ip-caso-text">Check Engine intermitente. 3 talleres anteriores cambiaron sensores O2, bujías y bobinas sin resultado. Más de $800 gastados sin solución.</div>
+        <div class="ip-caso-label">// Nuestro diagnóstico</div><div class="ip-caso-text">Con osciloscopio detectamos variación anormal en la señal del sensor CMP. Falla intermitente invisible al escáner básico.</div>
+        <div class="ip-caso-result"><div class="ip-caso-result-icon">✓</div><div><div class="ip-caso-result-text">Reemplazamos solo el sensor CMP. Problema resuelto al 100%.</div><div class="ip-caso-result-sub">2hs de diagnóstico · $65 vs $800+ gastados antes</div></div></div>
+      </div>
+      <div class="ip-caso">
+        <span class="ip-caso-tag">Ford Ranger 2019 · ECU</span>
+        <div class="ip-caso-vehicle">Ford Ranger 2019</div>
+        <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(0,217,126,0.1);border:1px solid rgba(0,217,126,0.2);padding:3px 10px;font-family:var(--font-mono);font-size:0.62rem;color:var(--green);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem">💰 Ahorro: $1.100</div>
+        <div class="ip-caso-label">// El problema</div><div class="ip-caso-text">No arrancaba en frío. Otro taller recomendó cambiar la ECU completa ($1.200). El dueño buscó segunda opinión.</div>
+        <div class="ip-caso-label">// Nuestro diagnóstico</div><div class="ip-caso-text">Lectura profunda mostró corrupción en tabla de mapas de inyección por actualización de software fallida. ECU físicamente perfecta.</div>
+        <div class="ip-caso-result"><div class="ip-caso-result-icon">✓</div><div><div class="ip-caso-result-text">Reprogramación y recalibración de ECU. Arranca perfecto.</div><div class="ip-caso-result-sub">Ahorro del cliente: $1.100 · Listo en el día</div></div></div>
+      </div>
+      <div class="ip-caso">
+        <span class="ip-caso-tag">Mitsubishi L200 2018 · Mecánica</span>
+        <div class="ip-caso-vehicle">Mitsubishi L200 2018</div>
+        <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(0,217,126,0.1);border:1px solid rgba(0,217,126,0.2);padding:3px 10px;font-family:var(--font-mono);font-size:0.62rem;color:var(--green);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem">💰 Ahorro: $850</div>
+        <div class="ip-caso-label">// El problema</div><div class="ip-caso-text">Pérdida de potencia y humo negro. Diagnóstico previo indicó turbo dañado ($900 de repuesto).</div>
+        <div class="ip-caso-label">// Nuestro diagnóstico</div><div class="ip-caso-text">Parámetros en tiempo real revelaron válvula EGR atascada causando mezcla rica. Turbo completamente funcional.</div>
+        <div class="ip-caso-result"><div class="ip-caso-result-icon">✓</div><div><div class="ip-caso-result-text">Limpieza y calibración de EGR. Potencia restaurada al 100%.</div><div class="ip-caso-result-sub">Ahorro: $850 · Sin reemplazar ninguna pieza mayor</div></div></div>
+      </div>
+      <div class="ip-caso">
+        <span class="ip-caso-tag">Nissan Frontier 2021 · Intermitente</span>
+        <div class="ip-caso-vehicle">Nissan Frontier 2021</div>
+        <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(0,217,126,0.1);border:1px solid rgba(0,217,126,0.2);padding:3px 10px;font-family:var(--font-mono);font-size:0.62rem;color:var(--green);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem">⏱ 4 talleres no pudieron</div>
+        <div class="ip-caso-label">// El problema</div><div class="ip-caso-text">Apagones al frenar. Solo ocurría 1 de cada 10 veces. 4 talleres no pudieron reproducirla ni diagnosticarla.</div>
+        <div class="ip-caso-label">// Nuestro diagnóstico</div><div class="ip-caso-text">Monitoreo con logger durante prueba de ruta. Detectamos microcorte en masa del módulo ABS bajo vibración específica.</div>
+        <div class="ip-caso-result"><div class="ip-caso-result-icon">✓</div><div><div class="ip-caso-result-text">Reparación del conector de masa. Falla eliminada permanentemente.</div><div class="ip-caso-result-sub">6 meses sin inconvenientes · Falla intermitente resuelta</div></div></div>
+      </div>
+    </div>
+    <div class="ip-cta">
+      <div class="ip-cta-title">¿Tu vehículo tiene<br><span>una falla similar?</span></div>
+      <p class="ip-cta-sub">Contanos el historial de tu caso. Cuanto más nos contás, más rápido encontramos la solución.</p>
+      <a href="https://wa.me/584242740585?text=Hola%20Valentino%20Motors%20LG!%20Vi%20los%20casos%20reales%20y%20quiero%20consultar." target="_blank" rel="noopener noreferrer" class="ip-btn-wa"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Consultar mi caso</a>
+      <button class="ip-btn-volver" onclick="closePage()">← Volver al inicio</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     PAGE: RESEÑAS
+══════════════════════════════════ -->
+<div class="ipage-overlay" id="ipage-resenas" role="dialog" aria-modal="true" aria-label="Reseñas">
+  <div class="ipage-topbar">
+    <div class="ipage-logo"><div class="ipage-logo-mark">VML</div><span class="ipage-logo-name">Valentino Motors LG</span></div>
+    <button class="ipage-back" onclick="closePage()">← Volver</button>
+  </div>
+  <div class="ipage-hero">
+    <div class="ipage-grid-bg"></div>
+    <div class="ipage-hero-inner">
+      <div class="ipage-label">Lo que dicen nuestros clientes</div>
+      <h2 class="ipage-title">Reseñas<br><span class="acc">reales.</span></h2>
+      <p class="ipage-sub">Clientes que llegaron con fallas que otros no pudieron resolver. Ellos cuentan su experiencia.</p>
+    </div>
+  </div>
+  <div class="ipage-body">
+    <div class="ip-stats">
+      <div class="ip-stat"><span class="ip-stat-num">★★★★★</span><span class="ip-stat-label">Calificación promedio</span></div>
+      <div class="ip-stat"><span class="ip-stat-num">500+</span><span class="ip-stat-label">Clientes atendidos</span></div>
+      <div class="ip-stat"><span class="ip-stat-num">15K+</span><span class="ip-stat-label">Seguidores Instagram</span></div>
+    </div>
+    <div class="ip-testis">
+      <div class="ip-testi"><span class="ip-testi-tag">Falla eléctrica · Toyota Hilux</span><div class="ip-testi-stars">★★★★★</div><p class="ip-testi-quote">"Fui a 3 talleres y nadie encontró el problema. En Valentino Motors en 2 horas me dijeron exactamente qué era y lo resolvieron. Increíble nivel de conocimiento."</p><div class="ip-testi-author"><div class="ip-testi-avatar">CR</div><div><div class="ip-testi-name">Carlos R.</div><div class="ip-testi-vehicle">Toyota Hilux 2020 · Catia La Mar</div></div></div></div>
+      <div class="ip-testi"><span class="ip-testi-tag">ECU · Ford Ranger</span><div class="ip-testi-stars">★★★★★</div><p class="ip-testi-quote">"Me iban a cobrar $1.200 por una ECU nueva. Valentino Motors la reprogramó por mucho menos. Ahorrá mucho dinero viniendo acá antes de cambiar piezas."</p><div class="ip-testi-author"><div class="ip-testi-avatar">MP</div><div><div class="ip-testi-name">Miguel P.</div><div class="ip-testi-vehicle">Ford Ranger 2019 · La Guaira</div></div></div></div>
+      <div class="ip-testi"><span class="ip-testi-tag">Check Engine · Chevrolet Silverado</span><div class="ip-testi-stars">★★★★★</div><p class="ip-testi-quote">"Profesionales de verdad. Te explican todo lo que hacen, no te cobran de más y realmente saben lo que hacen. Mi camioneta lleva 4 meses perfecta."</p><div class="ip-testi-author"><div class="ip-testi-avatar">JM</div><div><div class="ip-testi-name">José M.</div><div class="ip-testi-vehicle">Chevrolet Silverado 2021 · Maiquetía</div></div></div></div>
+      <div class="ip-testi"><span class="ip-testi-tag">Falla intermitente · Nissan Frontier</span><div class="ip-testi-stars">★★★★★</div><p class="ip-testi-quote">"Tenía un apagón que nadie encontraba. Valentino Motors lo detectó con equipos que otros talleres no tienen. Honesto, transparente y muy capacitado."</p><div class="ip-testi-author"><div class="ip-testi-avatar">AL</div><div><div class="ip-testi-name">Ana L.</div><div class="ip-testi-vehicle">Nissan Frontier 2021 · Vargas</div></div></div></div>
+      <div class="ip-testi"><span class="ip-testi-tag">Pérdida de potencia · Mitsubishi L200</span><div class="ip-testi-stars">★★★★★</div><p class="ip-testi-quote">"Me salvaron de gastar $900 en un turbo que no necesitaba. El problema era la válvula EGR. Diagnóstico preciso que otros no hicieron en meses."</p><div class="ip-testi-author"><div class="ip-testi-avatar">RV</div><div><div class="ip-testi-name">Roberto V.</div><div class="ip-testi-vehicle">Mitsubishi L200 2018 · Caracas</div></div></div></div>
+      <div class="ip-testi"><span class="ip-testi-tag">Reprogramación · Toyota Land Cruiser</span><div class="ip-testi-stars">★★★★★</div><p class="ip-testi-quote">"Atención impecable. Conocen Toyota como nadie. Mi Land Cruiser tenía un problema de módulo que nadie quería tocar y acá lo resolvieron sin dramas."</p><div class="ip-testi-author"><div class="ip-testi-avatar">DG</div><div><div class="ip-testi-name">Diego G.</div><div class="ip-testi-vehicle">Toyota Land Cruiser 200 · La Guaira</div></div></div></div>
+    </div>
+    <div class="ip-cta">
+      <div class="ip-cta-title">¿Querés ser el próximo<br><span>caso resuelto?</span></div>
+      <p class="ip-cta-sub">Contanos tu problema por WhatsApp. Respondemos en menos de 30 minutos.</p>
+      <a href="https://wa.me/584242740585?text=Hola%20Valentino%20Motors%20LG!%20Vi%20las%20rese%C3%B1as%20y%20quiero%20consultar." target="_blank" rel="noopener noreferrer" class="ip-btn-wa"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Consultar mi caso</a>
+      <button class="ip-btn-volver" onclick="closePage()">← Volver al inicio</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     PAGE: FAQ
+══════════════════════════════════ -->
+<div class="ipage-overlay" id="ipage-faq" role="dialog" aria-modal="true" aria-label="FAQ">
+  <div class="ipage-topbar">
+    <div class="ipage-logo"><div class="ipage-logo-mark">VML</div><span class="ipage-logo-name">Valentino Motors LG</span></div>
+    <button class="ipage-back" onclick="closePage()">← Volver</button>
+  </div>
+  <div class="ipage-hero">
+    <div class="ipage-grid-bg"></div>
+    <div class="ipage-hero-inner">
+      <div class="ipage-label">Preguntas frecuentes</div>
+      <h2 class="ipage-title">Todo lo que<br><span class="acc">necesitás saber.</span></h2>
+      <p class="ipage-sub">Respondemos las preguntas más comunes. ¿No encontrás la tuya? Escribinos directamente.</p>
+    </div>
+  </div>
+  <div class="ipage-body">
+    <div class="ip-faq">
+      <div class="ip-faq-item" id="ipf1"><button class="ip-faq-btn" onclick="toggleIpFaq('ipf1')">¿Cuánto cuesta el diagnóstico?<span class="ip-faq-icon">+</span></button><div class="ip-faq-body"><p>El costo varía según la complejidad del vehículo y el tipo de falla. Antes de comenzar siempre te informamos el precio. Contanos tu caso por WhatsApp y te damos un estimado sin compromiso.</p></div></div>
+      <div class="ip-faq-item" id="ipf2"><button class="ip-faq-btn" onclick="toggleIpFaq('ipf2')">¿Trabajan con todas las marcas?<span class="ip-faq-icon">+</span></button><div class="ip-faq-body"><p>Sí. Nuestra especialidad es Toyota, pero trabajamos con todas las marcas: Ford, Chevrolet, Nissan, Mitsubishi, Volkswagen, Hyundai, Kia, Jeep, Dodge, BMW, Mercedes-Benz, Audi y más.</p></div></div>
+      <div class="ip-faq-item" id="ipf3"><button class="ip-faq-btn" onclick="toggleIpFaq('ipf3')">¿Qué pasa si ya fui a otro taller?<span class="ip-faq-icon">+</span></button><div class="ip-faq-body"><p>Es exactamente para eso que existimos. Recibimos vehículos que otros talleres no pudieron resolver. Partimos desde cero sin asumir conclusiones previas. Muchos de nuestros mejores casos vienen de clientes que ya recorrieron 2, 3 o 4 talleres sin solución.</p></div></div>
+      <div class="ip-faq-item" id="ipf4"><button class="ip-faq-btn" onclick="toggleIpFaq('ipf4')">¿Cuánto tiempo toma el diagnóstico?<span class="ip-faq-icon">+</span></button><div class="ip-faq-body"><p>Un diagnóstico estándar toma entre 1 y 3 horas. Fallas eléctricas complejas o intermitentes pueden requerir más tiempo. Te avisamos el estimado al recibir el vehículo.</p></div></div>
+      <div class="ip-faq-item" id="ipf5"><button class="ip-faq-btn" onclick="toggleIpFaq('ipf5')">¿Puedo pedir diagnóstico por WhatsApp?<span class="ip-faq-icon">+</span></button><div class="ip-faq-body"><p>Podés contarnos los síntomas y te orientamos, pero para un diagnóstico preciso el vehículo debe estar físicamente en el taller. Respondemos en menos de 30 minutos.</p></div></div>
+      <div class="ip-faq-item" id="ipf6"><button class="ip-faq-btn" onclick="toggleIpFaq('ipf6')">¿Dónde están ubicados exactamente?<span class="ip-faq-icon">+</span></button><div class="ip-faq-body"><p>Estamos en Catia La Mar, Estado Vargas, Venezuela — a 2 minutos de La Guaira. Escribinos por WhatsApp y te mandamos el pin de ubicación exacta.</p></div></div>
+      <div class="ip-faq-item" id="ipf7"><button class="ip-faq-btn" onclick="toggleIpFaq('ipf7')">¿Hacen trabajos mecánicos también?<span class="ip-faq-icon">+</span></button><div class="ip-faq-body"><p>Nos especializamos en diagnóstico computarizado, fallas eléctricas y reprogramación ECU. Para trabajos mecánicos derivados, coordinamos con talleres de confianza o lo resolvemos directamente si está a nuestro alcance.</p></div></div>
+      <div class="ip-faq-item" id="ipf8"><button class="ip-faq-btn" onclick="toggleIpFaq('ipf8')">¿Tienen garantía en los trabajos?<span class="ip-faq-icon">+</span></button><div class="ip-faq-body"><p>Sí. Todos nuestros trabajos tienen garantía. Si la falla diagnosticada reaparece por la misma causa dentro del período, la revisamos sin costo adicional.</p></div></div>
+      <div class="ip-faq-item" id="ipf9"><button class="ip-faq-btn" onclick="toggleIpFaq('ipf9')">¿Se puede reprogramar la ECU sin cambiarla?<span class="ip-faq-icon">+</span></button><div class="ip-faq-body"><p>En la mayoría de los casos sí. Antes de recomendar el cambio hacemos una lectura profunda del módulo. Si la falla es de software se puede reprogramar ahorrando entre $600 y $1.200 o más.</p></div></div>
+      <div class="ip-faq-item" id="ipf10"><button class="ip-faq-btn" onclick="toggleIpFaq('ipf10')">¿Cuáles son los horarios de atención?<span class="ip-faq-icon">+</span></button><div class="ip-faq-body"><p>Atendemos de lunes a sábado, de 8am a 6pm. Podés escribirnos antes de venir para coordinar y asegurarte disponibilidad el día que necesitás.</p></div></div>
+    </div>
+    <div class="ip-cta">
+      <div class="ip-cta-title">¿Tu pregunta no está<br><span>en la lista?</span></div>
+      <p class="ip-cta-sub">Escribinos directamente y respondemos en menos de 30 minutos.</p>
+      <a href="https://wa.me/584242740585?text=Hola%20Valentino%20Motors%20LG!%20Tengo%20una%20pregunta." target="_blank" rel="noopener noreferrer" class="ip-btn-wa"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Hacer mi pregunta</a>
+      <button class="ip-btn-volver" onclick="closePage()">← Volver al inicio</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── Internal page system ──
+function openPage(id) {
+  closeMobile();
+  const el = document.getElementById('ipage-' + id);
+  if (!el) return;
+  el.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  el.scrollTop = 0;
+}
+function closePage() {
+  document.querySelectorAll('.ipage-overlay.active').forEach(el => {
+    el.classList.remove('active');
+  });
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closePage(); });
+
+// ── FAQ inside pages ──
+function toggleIpFaq(id) {
+  const item = document.getElementById(id);
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.ip-faq-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
 }
 </script>
 </body>
