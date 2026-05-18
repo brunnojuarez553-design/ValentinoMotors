@@ -1547,6 +1547,51 @@ footer ul li a:hover { color: var(--red); }
   }
   .vml-launcher { right: 1rem; bottom: 1.2rem; bottom: calc(1.2rem + env(safe-area-inset-bottom, 0px)); }
 }
+
+/* ──────────────────────────────
+   FLOTA 0KM — FORMULARIO
+────────────────────────────── */
+.flota-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+.flota-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+  line-height: 0.95;
+  margin-bottom: 1.4rem;
+}
+.flota-desc {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.8;
+  font-weight: 300;
+  margin-bottom: 2rem;
+  max-width: 480px;
+}
+.flota-bullets { display: flex; flex-direction: column; gap: 1.2rem; }
+.flota-bullet { display: flex; align-items: flex-start; gap: 14px; }
+.flota-bullet-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
+.flota-bullet-title { font-weight: 700; font-size: 0.9rem; color: var(--white); margin-bottom: 2px; }
+.flota-bullet-sub { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+.flota-form-wrap {
+  background: var(--graphite);
+  border: 1px solid var(--border);
+  padding: 2.5rem;
+  position: relative;
+}
+.flota-form-bar {
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--red), transparent 70%);
+}
+.flota-form-tag { font-family: var(--font-mono); font-size: 0.62rem; color: var(--muted); letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 0.5rem; }
+.flota-form-title { font-weight: 700; font-size: 1.2rem; color: var(--white); margin-bottom: 0.3rem; }
+.flota-form-sub { font-size: 0.82rem; color: var(--muted); margin-bottom: 1.8rem; }
+@media (max-width: 1024px) { .flota-grid { grid-template-columns: 1fr; gap: 3rem; } }
+@media (max-width: 768px) { .flota-grid { gap: 2rem; } .flota-form-wrap { padding: 1.8rem 1.4rem; } #flota { padding: 70px 0 !important; } }
+@media (max-width: 480px) { .flota-form-wrap { padding: 1.4rem 1rem; } }
 </style>
 <script type="application/ld+json">
 {
@@ -1589,8 +1634,6 @@ footer ul li a:hover { color: var(--red); }
     <li><a href="#dolor">¿Tu problema?</a></li>
     <li><a href="#services">Servicios</a></li>
     <li><a href="#casos">Casos reales</a></li>
-    <li><a href="#testimonios">Reseñas</a></li>
-    <li><a href="#faq">FAQ</a></li>
   </ul>
   <a href="#booking" class="nav-cta">Hablar con especialista →</a>
   <button class="burger" id="burger" onclick="toggleMobile()" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
@@ -1866,8 +1909,8 @@ footer ul li a:hover { color: var(--red); }
     <div class="services-header">
       <div class="label" style="margin-bottom:1rem" >Soluciones que ofrecemos</div>
       <div class="services-title-row fade-up">
-        <h2 class="services-main-title">No vendemos tecnología.<br>Vendemos soluciones.</h2>
-        <p class="services-intro">Cada servicio está orientado a resolver tu problema real. Sin diagnósticos genéricos. Sin cambiar piezas a ciegas. Resultado garantizado.</p>
+        <h2 class="services-main-title">¿Cansado de talleres que no encuentran la falla?</h2>
+        <p class="services-intro">En Valentino Motors diagnosticamos con precisión antes de reemplazar piezas innecesarias. Menos pruebas. Más resultados. Soluciones reales para problemas reales.</p>
       </div>
     </div>
     <div class="services-grid">
@@ -2036,10 +2079,8 @@ footer ul li a:hover { color: var(--red); }
 
 
 
-<!-- ==============================
-     CASOS REALES
-============================== -->
-<section id="casos" class="section-pad">
+<!-- casos reales removed from homepage — available in hamburger menu -->
+<section id="casos" class="section-pad" style="display:none">
   <div class="container">
     <div class="casos-header fade-up">
       <div class="label" style="margin-bottom:1rem">Resultados reales</div>
@@ -2134,194 +2175,7 @@ footer ul li a:hover { color: var(--red); }
   </div>
 </section>
 
-<!-- ==============================
-     TESTIMONIOS / RESEÑAS
-============================== -->
-<section id="testimonios" class="section-pad">
-  <div class="container">
-    <div class="testi-header fade-up">
-      <div class="label" style="justify-content:center;margin-bottom:1rem">Lo que dicen nuestros clientes</div>
-      <h2 class="testi-title">Reseñas reales</h2>
-      <p class="testi-sub">Clientes que llegaron con fallas que otros no pudieron resolver</p>
-    </div>
-    <div class="testi-grid">
 
-      <div class="testimonial fade-up">
-        <div class="testi-problem">Falla eléctrica · Toyota Hilux</div>
-        <div class="stars">★★★★★</div>
-        <p class="testi-text">Fui a 3 talleres y nadie encontró el problema. En Valentino Motors en 2 horas me dijeron exactamente qué era y lo resolvieron. Increíble nivel de conocimiento.</p>
-        <div class="testi-author">
-          <div class="author-avatar">CR</div>
-          <div>
-            <div class="author-name">Carlos R.</div>
-            <div class="author-vehicle">Toyota Hilux 2020 · Catia La Mar</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial fade-up delay-1">
-        <div class="testi-problem">ECU · Ford Ranger</div>
-        <div class="stars">★★★★★</div>
-        <p class="testi-text">Me iban a cobrar $1.200 por una ECU nueva. Valentino Motors la reprogramó por mucho menos. Ahorra mucho dinero viniendo acá antes de cambiar piezas.</p>
-        <div class="testi-author">
-          <div class="author-avatar">MP</div>
-          <div>
-            <div class="author-name">Miguel P.</div>
-            <div class="author-vehicle">Ford Ranger 2019 · La Guaira</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial fade-up delay-2">
-        <div class="testi-problem">Check Engine · Chevrolet Silverado</div>
-        <div class="stars">★★★★★</div>
-        <p class="testi-text">Profesionales de verdad. Te explican todo lo que hacen, no te cobran de más y realmente saben lo que están haciendo. Mi camioneta lleva 4 meses perfecta.</p>
-        <div class="testi-author">
-          <div class="author-avatar">JM</div>
-          <div>
-            <div class="author-name">José M.</div>
-            <div class="author-vehicle">Chevrolet Silverado 2021 · Maiquetía</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial fade-up">
-        <div class="testi-problem">Falla intermitente · Nissan Frontier</div>
-        <div class="stars">★★★★★</div>
-        <p class="testi-text">Tenía un apagón que nadie encontraba. Valentino Motors lo detectó con equipos que otros talleres no tienen. Honesto, transparente y muy capacitado.</p>
-        <div class="testi-author">
-          <div class="author-avatar">AL</div>
-          <div>
-            <div class="author-name">Ana L.</div>
-            <div class="author-vehicle">Nissan Frontier 2021 · Vargas</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial fade-up delay-1">
-        <div class="testi-problem">Pérdida de potencia · Mitsubishi L200</div>
-        <div class="stars">★★★★★</div>
-        <p class="testi-text">Me salvaron de gastar $900 en un turbo que no necesitaba. El problema era la válvula EGR. Diagnóstico preciso que otros no hicieron en meses.</p>
-        <div class="testi-author">
-          <div class="author-avatar">RV</div>
-          <div>
-            <div class="author-name">Roberto V.</div>
-            <div class="author-vehicle">Mitsubishi L200 2018 · Caracas</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial fade-up delay-2">
-        <div class="testi-problem">Reprogramación · Toyota Land Cruiser</div>
-        <div class="stars">★★★★★</div>
-        <p class="testi-text">Atención impecable. Conocen Toyota como nadie. Mi Land Cruiser tenía un problema de módulo que nadie quería tocar y acá lo resolvieron sin dramas.</p>
-        <div class="testi-author">
-          <div class="author-avatar">DG</div>
-          <div>
-            <div class="author-name">Diego G.</div>
-            <div class="author-vehicle">Toyota Land Cruiser 200 · La Guaira</div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ==============================
-     FAQ
-============================== -->
-<section id="faq" class="section-pad">
-  <div class="container">
-    <div class="faq-header fade-up">
-      <div class="label" style="margin-bottom:1rem">Preguntas frecuentes</div>
-      <h2 class="faq-title">Todo lo que<br>necesitás saber.</h2>
-    </div>
-    <div class="faq-grid">
-
-      <div class="faq-item" id="faq1">
-        <button class="faq-question" onclick="toggleFaq('faq1')">
-          ¿Cuánto cuesta el diagnóstico?
-          <span class="faq-toggle">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>El costo del diagnóstico varía según la complejidad del vehículo y el tipo de falla. Antes de comenzar siempre te informamos el precio. Contanos tu caso por WhatsApp y te damos un estimado sin compromiso.</p>
-        </div>
-      </div>
-
-      <div class="faq-item" id="faq2">
-        <button class="faq-question" onclick="toggleFaq('faq2')">
-          ¿Trabajan con todas las marcas?
-          <span class="faq-toggle">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>Sí. Nuestra especialidad es Toyota, pero trabajamos con todas las marcas del mercado: Ford, Chevrolet, Nissan, Mitsubishi, Volkswagen, Hyundai, Kia, Jeep, BMW, Mercedes-Benz y más.</p>
-        </div>
-      </div>
-
-      <div class="faq-item" id="faq3">
-        <button class="faq-question" onclick="toggleFaq('faq3')">
-          ¿Qué pasa si ya fui a otro taller?
-          <span class="faq-toggle">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>Es exactamente para eso que existimos. Recibimos vehículos que otros talleres no pudieron resolver. Partimos desde cero con nuestro propio diagnóstico sin asumir conclusiones previas.</p>
-        </div>
-      </div>
-
-      <div class="faq-item" id="faq4">
-        <button class="faq-question" onclick="toggleFaq('faq4')">
-          ¿Cuánto tiempo toma el diagnóstico?
-          <span class="faq-toggle">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>Un diagnóstico estándar toma entre 1 y 3 horas. Fallas eléctricas complejas o intermitentes pueden requerir más tiempo. Te avisamos el tiempo estimado al recibir el vehículo.</p>
-        </div>
-      </div>
-
-      <div class="faq-item" id="faq5">
-        <button class="faq-question" onclick="toggleFaq('faq5')">
-          ¿Puedo pedir diagnóstico por WhatsApp?
-          <span class="faq-toggle">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>Podés contarnos los síntomas por WhatsApp y te orientamos, pero para un diagnóstico preciso el vehículo debe estar físicamente en el taller. Respondemos en menos de 30 minutos.</p>
-        </div>
-      </div>
-
-      <div class="faq-item" id="faq6">
-        <button class="faq-question" onclick="toggleFaq('faq6')">
-          ¿Dónde están ubicados exactamente?
-          <span class="faq-toggle">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>Estamos en Catia La Mar, Estado Vargas, Venezuela — a 2 minutos de La Guaira. Escribinos por WhatsApp y te mandamos la ubicación exacta para que llegues sin problemas.</p>
-        </div>
-      </div>
-
-      <div class="faq-item" id="faq7">
-        <button class="faq-question" onclick="toggleFaq('faq7')">
-          ¿Hacen trabajos mecánicos también?
-          <span class="faq-toggle">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>Nos especializamos en diagnóstico computarizado, fallas eléctricas y reprogramación ECU. Para trabajos mecánicos derivados del diagnóstico, coordinamos con talleres de confianza o lo resolvemos en casa.</p>
-        </div>
-      </div>
-
-      <div class="faq-item" id="faq8">
-        <button class="faq-question" onclick="toggleFaq('faq8')">
-          ¿Tienen garantía en los trabajos?
-          <span class="faq-toggle">+</span>
-        </button>
-        <div class="faq-answer">
-          <p>Sí. Todos nuestros trabajos tienen garantía. Si la falla diagnosticada reaparece por la misma causa dentro del período de garantía, la revisamos sin costo adicional.</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
 
 <!-- ==============================
      BOOKING — CTA WHATSAPP
@@ -2354,6 +2208,137 @@ footer ul li a:hover { color: var(--red); }
         <span style="font-size:0.78rem;color:var(--muted)">⚡ Respuesta &lt;30 min</span>
         <span style="font-size:0.78rem;color:var(--muted)">📍 Catia La Mar, Venezuela</span>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==============================
+     FLOTA 0KM — FORMULARIO
+============================== -->
+<section id="flota" style="background:var(--black);padding:100px 0;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;pointer-events:none;z-index:0;
+    background-image:linear-gradient(rgba(232,0,15,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(232,0,15,0.025) 1px,transparent 1px);
+    background-size:60px 60px;
+    mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 20%,transparent 80%);
+    -webkit-mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 20%,transparent 80%);">
+  </div>
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="flota-grid">
+
+      <!-- LEFT: copy -->
+      <div class="flota-left fade-up">
+        <div class="label" style="margin-bottom:1.4rem">Servicio para empresas</div>
+        <h2 class="flota-title">
+          ¿Tenés una flota<br>
+          <span style="color:var(--red)">0km y querés<br>adaptarla</span> a nuestro<br>combustible?
+        </h2>
+        <p class="flota-desc">
+          Trabajamos con empresas y flotas vehiculares que necesitan conversión o adaptación de sistemas de combustible. Diagnóstico previo, intervención precisa, garantía en cada unidad.
+        </p>
+        <div class="flota-bullets">
+          <div class="flota-bullet">
+            <div class="flota-bullet-icon">🚛</div>
+            <div>
+              <div class="flota-bullet-title">Camionetas, furgones y flotas mixtas</div>
+              <div class="flota-bullet-sub">Trabajamos con todas las marcas y configuraciones</div>
+            </div>
+          </div>
+          <div class="flota-bullet">
+            <div class="flota-bullet-icon">🔧</div>
+            <div>
+              <div class="flota-bullet-title">Diagnóstico previo incluido</div>
+              <div class="flota-bullet-sub">Verificamos compatibilidad antes de cualquier intervención</div>
+            </div>
+          </div>
+          <div class="flota-bullet">
+            <div class="flota-bullet-icon">🛡️</div>
+            <div>
+              <div class="flota-bullet-title">Garantía en cada vehículo</div>
+              <div class="flota-bullet-sub">Respaldo total en cada unidad intervenida</div>
+            </div>
+          </div>
+          <div class="flota-bullet">
+            <div class="flota-bullet-icon">⚡</div>
+            <div>
+              <div class="flota-bullet-title">Respondemos en menos de 24hs</div>
+              <div class="flota-bullet-sub">Te preparamos una propuesta personalizada para tu flota</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: form -->
+      <div class="flota-right fade-up delay-1">
+        <div class="flota-form-wrap">
+          <div class="flota-form-bar"></div>
+          <div class="flota-form-head">
+            <div class="flota-form-tag">// Completá el formulario</div>
+            <div class="flota-form-title">Consultá por tu flota</div>
+            <div class="flota-form-sub">Te contactamos en menos de 24 horas con una propuesta.</div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fl-name">Nombre / Empresa</label>
+              <input type="text" id="fl-name" placeholder="Ej: Transportes del Sur S.A." autocomplete="organization">
+            </div>
+            <div class="form-group">
+              <label for="fl-phone">WhatsApp / Teléfono</label>
+              <input type="tel" id="fl-phone" placeholder="Ej: 0412-555-1234" autocomplete="tel">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fl-cantidad">Cantidad de vehículos</label>
+              <select id="fl-cantidad">
+                <option value="">Seleccioná</option>
+                <option>1 – 3 vehículos</option>
+                <option>4 – 10 vehículos</option>
+                <option>11 – 30 vehículos</option>
+                <option>Más de 30 vehículos</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="fl-marca">Marca principal</label>
+              <select id="fl-marca">
+                <option value="">Seleccioná</option>
+                <option>Toyota</option>
+                <option>Ford</option>
+                <option>Chevrolet</option>
+                <option>Nissan</option>
+                <option>Mitsubishi</option>
+                <option>Volkswagen</option>
+                <option>Otra</option>
+                <option>Mixta</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="fl-combustible">Combustible destino</label>
+            <select id="fl-combustible">
+              <option value="">¿A qué combustible querés adaptar?</option>
+              <option>Gas Natural Vehicular (GNV)</option>
+              <option>GLP / Propano</option>
+              <option>Dual (gasolina + gas)</option>
+              <option>No sé, necesito asesoría</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="fl-detalle">Detalles adicionales (opcional)</label>
+            <textarea id="fl-detalle" placeholder="Contanos el modelo de los vehículos, año, si son nuevos, si ya tuvieron alguna adaptación previa…"></textarea>
+          </div>
+
+          <button class="form-submit" type="button" onclick="sendFlotaWA()" aria-label="Enviar consulta de flota por WhatsApp">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Enviar consulta por WhatsApp
+          </button>
+          <p class="form-note">Te respondemos en menos de 24 horas con una propuesta para tu flota.</p>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -2397,9 +2382,9 @@ footer ul li a:hover { color: var(--red); }
         <ul>
           <li><a href="#comparativa">¿Por qué nosotros?</a></li>
           <li><a href="#casos">Casos reales</a></li>
-          <li><a href="#testimonios">Reseñas</a></li>
           <li><a href="#faq">Preguntas frecuentes</a></li>
           <li><a href="#booking">Agendar turno</a></li>
+          <li><a href="#flota">Flota 0km</a></li>
         </ul>
       </div>
       <div>
@@ -2844,6 +2829,36 @@ function sendWhatsApp() {
   const prob = problem ? `\n\n*Descripción del problema:*\n${problem}` : '';
   const msg = `Hola *Valentino Motors LG* 👋\n\nSoy *${name}*${phone ? ` (${phone})` : ''} y quiero consultar sobre mi vehículo.\n\n🚗 *Vehículo:* ${vehicle}\n🔧 *Servicio que necesito:* ${srv}${prob}\n\n¿Pueden ayudarme?`;
   window.open(`https://wa.me/584242740585?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+
+// ─── Flota 0km WA form ───
+function sendFlotaWA() {
+  const name      = document.getElementById('fl-name').value.trim();
+  const phone     = document.getElementById('fl-phone').value.trim();
+  const cantidad  = document.getElementById('fl-cantidad').value;
+  const marca     = document.getElementById('fl-marca').value;
+  const combustible = document.getElementById('fl-combustible').value;
+  const detalle   = document.getElementById('fl-detalle').value.trim();
+  if (!name) { alert('Por favor ingresá tu nombre o empresa'); document.getElementById('fl-name').focus(); return; }
+  if (!phone) { alert('Por favor ingresá tu número de contacto'); document.getElementById('fl-phone').focus(); return; }
+  if (!cantidad) { alert('Por favor seleccioná la cantidad de vehículos'); document.getElementById('fl-cantidad').focus(); return; }
+  const lines = [
+    `Hola *Valentino Motors LG* 👋`,
+    ``,
+    `Soy *${name}* y estoy interesado/a en adaptar mi flota de vehículos 0km.`,
+    ``,
+    `📱 *Contacto:* ${phone}`,
+    `🚛 *Cantidad de vehículos:* ${cantidad || 'No especificado'}`,
+    `🏷️ *Marca principal:* ${marca || 'No especificado'}`,
+    `⛽ *Combustible destino:* ${combustible || 'No especificado'}`,
+    detalle ? `
+📝 *Detalles:*
+${detalle}` : '',
+    ``,
+    `¿Pueden prepararme una propuesta?`
+  ].filter(l => l !== null).join('\n');
+  window.open(`https://wa.me/584242740585?text=${encodeURIComponent(lines)}`, '_blank');
 }
 
 // ─── Smooth scroll (también cierra el menú móvil) ───
