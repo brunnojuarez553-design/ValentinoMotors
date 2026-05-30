@@ -348,6 +348,7 @@
       disablepictureinpicture
       disableremoteplayback
       x-webkit-airplay="deny"
+      fetchpriority="high"
       poster="https://res.cloudinary.com/dvvuwigmy/image/upload/w_1920,h_1080,c_fill,f_jpg,q_85/v1779059633/insta_video_2208_vxavh9"
     >
       <!-- Mobile: 720p alta calidad -->
@@ -397,10 +398,10 @@
       </p>
 
       <div class="hero-buttons">
-        <a href="#booking" class="btn-primary">
+        <a href="#booking" class="btn-primary" onclick="event.preventDefault();var el=document.getElementById('booking');if(el){el.classList.add('visible');setTimeout(function(){el.scrollIntoView({behavior:'smooth',block:'start'});},50);}">
           📱 Quiero diagnosticar mi vehículo
         </a>
-        <a href="#egr-cotizar" class="btn-ghost" onclick="event.preventDefault();var el=document.getElementById('egr-cotizar');if(el){el.classList.add('visible');setTimeout(function(){el.scrollIntoView({behavior:'smooth',block:'start'});},50);}">
+        <a href="#egr-cotizar" style="color:var(--red-bright);background:rgba(232,0,15,0.15);font-weight:600;font-size:0.82rem;letter-spacing:0.08em;text-transform:uppercase;padding:15px 28px;text-decoration:none;display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(232,0,15,0.35);clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));transition:background 0.25s,border-color 0.25s;" onmouseover="this.style.background='rgba(232,0,15,0.28)';this.style.borderColor='rgba(232,0,15,0.6)'" onmouseout="this.style.background='rgba(232,0,15,0.15)';this.style.borderColor='rgba(232,0,15,0.35)'" onclick="event.preventDefault();var el=document.getElementById('egr-cotizar');if(el){el.classList.add('visible');setTimeout(function(){el.scrollIntoView({behavior:'smooth',block:'start'});},50);}">
           🔧 Cotizar Reprogramación y eliminación de EGR →
         </a>
       </div>
@@ -1980,6 +1981,9 @@ if (p && p.catch) p.catch(function(){});
 }
 }
 if (hero) {
+// Forzar visible inmediatamente para no esperar al IntersectionObserver
+hero.style.opacity = '1';
+// Play agresivo: intentar de inmediato y en cada evento clave
 tryPlay(hero);
 ['loadstart','loadedmetadata','loadeddata','canplay','canplaythrough','playing'].forEach(function(ev) {
 hero.addEventListener(ev, function() { tryPlay(hero); }, { passive: true });
@@ -1987,12 +1991,14 @@ hero.addEventListener(ev, function() { tryPlay(hero); }, { passive: true });
 hero.addEventListener('pause', function() {
 if (!document.hidden) tryPlay(hero);
 }, { passive: true });
-[0, 50, 150, 300, 600, 1200, 2500].forEach(function(ms) {
+// Reintentos escalonados para superar bloqueos de autoplay
+[0, 30, 80, 200, 500, 1000].forEach(function(ms) {
 setTimeout(function() { tryPlay(hero); }, ms);
 });
 document.addEventListener('visibilitychange', function() {
 if (!document.hidden) tryPlay(hero);
 });
+// Desbloquear en primer gesto del usuario
 var heroUnlocked = false;
 function unlockHero() {
 if (heroUnlocked) return;
@@ -2002,14 +2008,7 @@ tryPlay(hero);
 ['touchstart','touchend','click','scroll','keydown','pointerdown'].forEach(function(ev) {
 document.addEventListener(ev, unlockHero, { once: true, passive: true, capture: true });
 });
-if (navigator.connection) {
-var conn = navigator.connection;
-var slow = conn.effectiveType === '2g' || conn.effectiveType === 'slow-2g' || conn.saveData;
-if (slow) {
-hero.pause();
-hero.removeAttribute('autoplay');
-}
-}
+// NO pausar en conexiones lentas — el poster HD cubre el tiempo de carga
 }
 if (nosotros) {
 nosotros.muted = true;
