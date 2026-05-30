@@ -7,10 +7,11 @@
 <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
 <link rel="dns-prefetch" href="https://res.cloudinary.com">
 
-<link rel="preload" as="image" href="https://res.cloudinary.com/dvvuwigmy/image/upload/w_800,h_450,c_fill,f_jpg,q_50/v1779059633/insta_video_2208_vxavh9" fetchpriority="high" media="(max-width: 768px)">
-<link rel="preload" as="image" href="https://res.cloudinary.com/dvvuwigmy/image/upload/w_1280,h_720,c_fill,f_jpg,q_60/v1779059633/insta_video_2208_vxavh9" fetchpriority="high" media="(min-width: 769px)">
+<link rel="preload" as="image" href="https://res.cloudinary.com/dvvuwigmy/image/upload/w_828,h_466,c_fill,f_jpg,q_80/v1779059633/insta_video_2208_vxavh9" fetchpriority="high" media="(max-width: 768px)">
+<link rel="preload" as="image" href="https://res.cloudinary.com/dvvuwigmy/image/upload/w_1920,h_1080,c_fill,f_jpg,q_85/v1779059633/insta_video_2208_vxavh9" fetchpriority="high" media="(min-width: 769px)">
 
-<link rel="preload" as="fetch" href="https://res.cloudinary.com/dvvuwigmy/video/upload/w_1280,q_50,vc_h264,f_mp4/v1779059633/insta_video_2208_vxavh9.mp4" crossorigin media="(min-width: 769px)">
+<link rel="preload" as="fetch" href="https://res.cloudinary.com/dvvuwigmy/video/upload/w_1280,q_80,vc_h264,f_mp4,ac_none/v1779059633/insta_video_2208_vxavh9.mp4" crossorigin media="(min-width: 769px)">
+<link rel="preload" as="fetch" href="https://res.cloudinary.com/dvvuwigmy/video/upload/w_720,q_75,vc_h264,f_mp4,ac_none/v1779059633/insta_video_2208_vxavh9.mp4" crossorigin media="(max-width: 768px)">
 <meta name="description" content="Valentino Motors — Servicio automotriz posventa en Catia La Mar, La Guaira. Reprogramación ECU, eliminación EGR, entonación de motor, cambio de aceite, suspensión y reconstrucción de motores. Ford, Chevrolet, Jeep, Toyota desde 2010. Garantía en todos nuestros servicios y repuestos.">
 <meta name="keywords" content="servicio automotriz Catia La Mar, reparacion de vehiculos La Guaira Venezuela, reprogramacion toyota Venezuela, eliminacion EGR Venezuela, reprogramacion ECU Catia La Mar, entonacion de motor Venezuela, cambio de aceite Catia La Mar, reconstruccion de motores Venezuela, instalacion suspension Venezuela, repuestos automotriz Venezuela, taller ford chevrolet jeep toyota Venezuela, posventa automotriz La Guaira, Valentino Motors">
 <meta name="robots" content="index, follow">
@@ -347,17 +348,24 @@
       disablepictureinpicture
       disableremoteplayback
       x-webkit-airplay="deny"
-      poster="https://res.cloudinary.com/dvvuwigmy/image/upload/w_800,h_450,c_fill,f_jpg,q_50/v1779059633/insta_video_2208_vxavh9"
+      poster="https://res.cloudinary.com/dvvuwigmy/image/upload/w_1920,h_1080,c_fill,f_jpg,q_85/v1779059633/insta_video_2208_vxavh9"
     >
-      
+      <!-- Mobile: 720p alta calidad -->
       <source
         media="(max-width: 768px)"
-        src="https://res.cloudinary.com/dvvuwigmy/video/upload/w_480,q_30,vc_h264,f_mp4,ac_none/v1779059633/insta_video_2208_vxavh9.mp4"
+        src="https://res.cloudinary.com/dvvuwigmy/video/upload/w_720,q_75,vc_h264,f_mp4,ac_none/v1779059633/insta_video_2208_vxavh9.mp4"
         type="video/mp4"
       >
-      
+      <!-- Desktop: WebM VP9 primero (menor tamaño, misma calidad) -->
       <source
-        src="https://res.cloudinary.com/dvvuwigmy/video/upload/w_1280,q_50,vc_h264,f_mp4/v1779059633/insta_video_2208_vxavh9.mp4"
+        media="(min-width: 769px)"
+        src="https://res.cloudinary.com/dvvuwigmy/video/upload/w_1280,q_80,vc_vp9,f_webm,ac_none/v1779059633/insta_video_2208_vxavh9.webm"
+        type="video/webm"
+      >
+      <!-- Desktop: H.264 fallback alta calidad -->
+      <source
+        media="(min-width: 769px)"
+        src="https://res.cloudinary.com/dvvuwigmy/video/upload/w_1280,q_80,vc_h264,f_mp4,ac_none/v1779059633/insta_video_2208_vxavh9.mp4"
         type="video/mp4"
       >
     </video>
@@ -392,8 +400,8 @@
         <a href="#booking" class="btn-primary">
           📱 Quiero diagnosticar mi vehículo
         </a>
-        <a href="#casos" class="btn-ghost">
-          Ver casos reales →
+        <a href="#egr-cotizar" class="btn-ghost" onclick="event.preventDefault();var el=document.getElementById('egr-cotizar');if(el){el.classList.add('visible');setTimeout(function(){el.scrollIntoView({behavior:'smooth',block:'start'});},50);}">
+          🔧 Cotizar Reprogramación y eliminación de EGR →
         </a>
       </div>
 
@@ -461,10 +469,10 @@
   <!-- Ubicación al pie del hero -->
   <div style="position:relative;z-index:3;max-width:1360px;margin:0 auto;padding:0 2.5rem 2.5rem;">
     <a href="https://www.google.com/maps/place/Valentino+Motors/@10.6015357,-67.0339722,17z" target="_blank" rel="noopener"
-      style="display:inline-flex;align-items:center;gap:10px;background:rgba(6,6,8,0.72);border:1px solid rgba(232,0,15,0.28);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:10px 18px;text-decoration:none;color:rgba(245,245,248,0.85);font-size:0.78rem;font-family:'DM Mono','SF Mono',monospace;letter-spacing:0.1em;text-transform:uppercase;transition:all 0.25s;">
-      <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#E8000F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-      <span>Calle 5, Parcela N° 314, Urb. Balneario — Catia La Mar, La Guaira</span>
-      <span style="color:#E8000F;font-size:0.7rem">Ver en Maps →</span>
+      aria-label="Ver Valentino Motors en Google Maps — Catia La Mar, La Guaira"
+      style="display:inline-flex;align-items:center;gap:9px;background:var(--red);color:white;font-family:var(--font-mono);font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:700;padding:11px 22px;text-decoration:none;clip-path:polygon(0 0,calc(100% - 9px) 0,100% 9px,100% 100%,9px 100%,0 calc(100% - 9px));transition:opacity 0.2s;" onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      Ver en Maps
     </a>
   </div>
 
@@ -604,6 +612,50 @@
         <p class="services-intro">En Valentino Motors diagnosticamos con precisión antes de reemplazar piezas innecesarias. Menos pruebas. Más resultados. Soluciones reales para problemas reales.</p>
       </div>
     </div>
+    <!-- Banner EGR -->
+    <div class="egr-banner fade-up" id="egr-cotizar" style="margin-bottom:1px;background:linear-gradient(135deg,rgba(232,0,15,0.10) 0%,rgba(232,0,15,0.03) 100%);border:1px solid rgba(232,0,15,0.32);padding:1.8rem 2rem;position:relative;overflow:hidden;">
+      <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--red),transparent 70%);"></div>
+      <div style="position:absolute;top:0;right:0;width:200px;height:100%;background:radial-gradient(ellipse at right center,rgba(232,0,15,0.08),transparent 70%);pointer-events:none;"></div>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1.5rem;position:relative;z-index:1;">
+        <!-- Info izquierda -->
+        <div style="flex:1;min-width:260px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:0.8rem;">
+            <span style="font-family:var(--font-mono);font-size:0.62rem;color:var(--red);letter-spacing:0.18em;text-transform:uppercase;">// Servicio destacado</span>
+            <span style="display:inline-flex;align-items:center;gap:5px;background:rgba(0,217,126,0.12);border:1px solid rgba(0,217,126,0.28);color:#00D97E;font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;padding:3px 9px;">
+              <span style="width:5px;height:5px;border-radius:50%;background:#00D97E;display:inline-block;"></span>
+              Garantía 1 año
+            </span>
+          </div>
+          <h3 style="font-family:var(--font-display);font-size:clamp(1.5rem,3vw,2rem);line-height:1;color:var(--white);margin-bottom:0.5rem;">Reprogramación y <span style="color:var(--red);">Eliminación de EGR</span></h3>
+          <p style="font-size:0.83rem;color:rgba(245,245,248,0.65);line-height:1.7;max-width:520px;font-weight:300;">
+            La válvula EGR recircula gases quemados al motor, acumulando hollín y reduciendo potencia con el tiempo. La eliminamos y reprogramamos la ECU para que el motor trabaje de forma limpia y eficiente: <strong style="color:var(--white);font-weight:600;">más torque, menos consumo, mayor vida útil del motor.</strong> Cubrimos el servicio completo con <strong style="color:#00D97E;font-weight:600;">1 año de garantía.</strong>
+          </p>
+          <!-- Bullets rápidos -->
+          <div style="display:flex;flex-wrap:wrap;gap:0.5rem 1.4rem;margin-top:1rem;">
+            <span style="font-size:0.76rem;color:rgba(245,245,248,0.6);display:flex;align-items:center;gap:6px;"><span style="color:var(--red);">✦</span> Diagnóstico incluido</span>
+            <span style="font-size:0.76rem;color:rgba(245,245,248,0.6);display:flex;align-items:center;gap:6px;"><span style="color:var(--red);">✦</span> ECU personalizada a tu vehículo</span>
+            <span style="font-size:0.76rem;color:rgba(245,245,248,0.6);display:flex;align-items:center;gap:6px;"><span style="color:var(--red);">✦</span> Ford · Chevrolet · Jeep · Toyota</span>
+            <span style="font-size:0.76rem;color:rgba(245,245,248,0.6);display:flex;align-items:center;gap:6px;"><span style="color:var(--red);">✦</span> Entrega mismo día (según modelo)</span>
+          </div>
+        </div>
+        <!-- Precio + CTA derecha -->
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:0.8rem;flex-shrink:0;">
+          <div style="background:var(--graphite2);border:1px solid var(--border);padding:1rem 1.4rem;text-align:center;min-width:180px;">
+            <div style="font-family:var(--font-mono);font-size:0.6rem;color:var(--muted);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:0.3rem;">¿Cuánto cuesta?</div>
+            <div style="font-family:var(--font-display);font-size:1.6rem;color:var(--white);line-height:1;margin-bottom:0.2rem;">Precio variable</div>
+            <div style="font-size:0.72rem;color:var(--muted);line-height:1.4;">Depende del modelo<br>y año del vehículo</div>
+          </div>
+          <a href="https://wa.me/584242740585?text=Quiero%20obtener%20m%C3%A1s%20informaci%C3%B3n%20sobre%20la%20reprogramaci%C3%B3n%20y%20eliminaci%C3%B3n%20de%20EGR"
+            target="_blank" rel="noopener noreferrer"
+            style="display:inline-flex;align-items:center;gap:9px;background:var(--red);color:white;font-weight:700;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;padding:13px 22px;text-decoration:none;white-space:nowrap;clip-path:polygon(0 0,calc(100% - 9px) 0,100% 9px,100% 100%,9px 100%,0 calc(100% - 9px));transition:opacity 0.2s;width:100%;justify-content:center;" onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.557 4.122 1.528 5.855L0 24l6.335-1.505A11.946 11.946 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.007-1.375l-.36-.214-3.727.977.994-3.634-.235-.374A9.818 9.818 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+            Obtener cotización
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- /Banner EGR -->
+
     <div class="services-grid">
       <div class="service-card fade-up">
         <span class="service-num">01</span>
@@ -1578,7 +1630,7 @@ bot: '¡Hola! 👋 Soy el asistente de *Valentino Motors LG*.\n\nSomos especiali
 type: 'options',
 opts: [
 { label: '🔧 Tengo una falla que nadie resolvió', next: 'nombre' },
-{ label: '⚡ Problema eléctrico / ECU', next: 'nombre' },
+{ label: '🔴 Reprogramación y eliminación de EGR', next: 'nombre' },
 { label: '🔴 Check Engine encendido', next: 'nombre' },
 { label: '📋 Diagnóstico preventivo', next: 'nombre' },
 { label: '💬 Otra consulta', next: 'nombre' },
@@ -1639,7 +1691,7 @@ key: 'servicio',
 opts: [
 { label: '🖥️ Diagnóstico computarizado completo', next: 'problema' },
 { label: '⚡ Diagnóstico falla eléctrica', next: 'problema' },
-{ label: '🔧 Reprogramación / calibración ECU', next: 'problema' },
+{ label: '🔴 Reprogramación y eliminación de EGR', next: 'problema' },
 { label: '⚙️ Diagnóstico mecánico con escáner', next: 'problema' },
 { label: '🏎️ Optimización de motor', next: 'problema' },
 { label: '🛡️ Service preventivo', next: 'problema' },
