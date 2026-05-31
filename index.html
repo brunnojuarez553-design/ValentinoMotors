@@ -619,7 +619,7 @@
     .egr-featured-grid>div:first-child{border-right:none!important;border-bottom:1px solid rgba(255,255,255,0.07)!important;}
     .egr-featured-grid>div{padding:1.4rem 1.2rem!important;}
     .egr-campos-row{grid-template-columns:1fr!important;}
-    #egr-marca,#egr-modelo,#egr-km{font-size:16px!important;padding:12px 14px!important;min-height:48px!important;}
+    #egr-marca,#egr-modelo,#egr-km,#egr-trabajo{font-size:16px!important;padding:12px 14px!important;min-height:48px!important;}
     #egr-btn-wa{padding:16px 20px!important;font-size:0.82rem!important;min-height:52px!important;}
     .egr-precio-box{flex-direction:column!important;gap:0.6rem!important;width:100%!important;}
     .egr-precio-box>div:last-child{border-left:none!important;border-top:1px solid rgba(255,255,255,0.07)!important;padding-left:0!important;padding-top:0.6rem!important;}
@@ -746,6 +746,11 @@
               <input id="egr-km" type="text" placeholder="Ej: 95,000 km" style="background:var(--graphite2);border:1px solid var(--border);color:var(--white);padding:10px 12px;font-family:var(--font-body);font-size:0.85rem;outline:none;transition:border-color 0.2s;width:100%;" onfocus="this.style.borderColor='rgba(232,0,15,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.07)'" />
             </div>
           </div>
+          <!-- Trabajo a realizar -->
+          <div style="display:flex;flex-direction:column;gap:0.3rem;margin-top:0.7rem;">
+            <label style="font-family:var(--font-mono);font-size:0.58rem;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;">Trabajo a realizar</label>
+            <input id="egr-trabajo" type="text" placeholder="Ej: EGR Delete + cambio de aceite" style="background:var(--graphite2);border:1px solid var(--border);color:var(--white);padding:10px 12px;font-family:var(--font-body);font-size:0.85rem;outline:none;transition:border-color 0.2s;width:100%;" onfocus="this.style.borderColor='rgba(232,0,15,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.07)'" />
+          </div>
 
           <!-- Botón WhatsApp -->
           <button id="egr-btn-wa" onclick="enviarCotizacionEGR()" style="width:100%;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:var(--red);color:white;font-weight:700;font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;padding:14px 22px;border:none;cursor:pointer;clip-path:polygon(0 0,calc(100% - 9px) 0,100% 9px,100% 100%,9px 100%,0 calc(100% - 9px));transition:opacity 0.2s;" onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
@@ -771,7 +776,8 @@
         });
         return;
       }
-      var txt = 'Hola Valentino Motors! Quiero cotizar el Pack EGR Delete para mi Toyota Dynamic Force:\n\n🚗 Marca: ' + marca + '\n📋 Modelo: ' + modelo + '\n⏱ Kilometraje: ' + km + '\n\n¿Cuánto costaría el servicio completo?';
+      var trabajo = document.getElementById('egr-trabajo').value.trim();
+      var txt = 'Hola Valentino Motors! Quiero cotizar el Pack EGR Delete para mi Toyota Dynamic Force:\n\n🚗 Marca: ' + marca + '\n📋 Modelo: ' + modelo + '\n⏱ Kilometraje: ' + km + (trabajo ? '\n🔧 Trabajo a realizar: ' + trabajo : '') + '\n\n¿Cuánto costaría el servicio completo?';
       window.open('https://wa.me/584242740585?text=' + encodeURIComponent(txt), '_blank', 'noopener,noreferrer');
     }
     </script>
