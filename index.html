@@ -613,7 +613,21 @@
         <p class="services-intro">En Valentino Motors diagnosticamos con precisión antes de reemplazar piezas innecesarias. Menos pruebas. Más resultados. Soluciones reales para problemas reales.</p>
       </div>
     </div>
-    <style>@media(max-width:768px){.egr-featured-grid{grid-template-columns:1fr!important}.egr-featured-grid>div:first-child{border-right:none!important;border-bottom:1px solid rgba(255,255,255,0.07)!important}}</style>
+    <style>
+  @media(max-width:768px){
+    .egr-featured-grid{grid-template-columns:1fr!important;}
+    .egr-featured-grid>div:first-child{border-right:none!important;border-bottom:1px solid rgba(255,255,255,0.07)!important;}
+    .egr-featured-grid>div{padding:1.4rem 1.2rem!important;}
+    .egr-campos-row{grid-template-columns:1fr!important;}
+    #egr-marca,#egr-modelo,#egr-km{font-size:16px!important;padding:12px 14px!important;min-height:48px!important;}
+    #egr-btn-wa{padding:16px 20px!important;font-size:0.82rem!important;min-height:52px!important;}
+    .egr-precio-box{flex-direction:column!important;gap:0.6rem!important;width:100%!important;}
+    .egr-precio-box>div:last-child{border-left:none!important;border-top:1px solid rgba(255,255,255,0.07)!important;padding-left:0!important;padding-top:0.6rem!important;}
+  }
+  @media(max-width:480px){
+    .egr-featured-grid>div{padding:1.1rem 1rem!important;}
+  }
+</style>
     <!-- Servicio Destacado EGR - Separado de la grilla -->
     <div class="egr-featured fade-up" id="egr-cotizar" style="margin-bottom:2.5rem;background:linear-gradient(135deg,rgba(232,0,15,0.10) 0%,rgba(232,0,15,0.03) 100%);border:1px solid rgba(232,0,15,0.38);position:relative;overflow:hidden;">
       <!-- Barra superior roja -->
@@ -636,23 +650,50 @@
           </div>
 
           <!-- Título -->
-          <h3 style="font-family:var(--font-display);font-size:clamp(1.6rem,3vw,2.4rem);line-height:1;color:var(--white);margin-bottom:0.8rem;">Reprogramación y <span style="color:var(--red);">Eliminación de EGR</span></h3>
+          <h3 style="font-family:var(--font-display);font-size:clamp(1.6rem,3vw,2.4rem);line-height:1;color:var(--white);margin-bottom:0.5rem;">Pack EGR Delete <span style="color:var(--red);">Toyota Dynamic Force</span></h3>
+          <div style="font-family:var(--font-mono);font-size:0.62rem;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1rem;">2.5 · 2.0 · 1.8 · 1.5 litros</div>
 
-          <!-- Descripción -->
-          <p style="font-size:0.84rem;color:rgba(245,245,248,0.65);line-height:1.75;font-weight:300;margin-bottom:1.4rem;">
-            La válvula EGR recircula gases quemados al motor, acumulando hollín y reduciendo potencia con el tiempo. La eliminamos y reprogramamos la ECU para que el motor trabaje de forma limpia y eficiente: <strong style="color:var(--white);font-weight:600;">más torque, menos consumo, mayor vida útil del motor.</strong> Cubrimos el servicio completo con <strong style="color:#00D97E;font-weight:600;">1 año de garantía.</strong>
-          </p>
+          <!-- Alerta combustible -->
+          <div style="background:rgba(232,0,15,0.08);border:1px solid rgba(232,0,15,0.28);padding:0.75rem 1rem;margin-bottom:1.2rem;font-size:0.79rem;color:rgba(245,245,248,0.75);line-height:1.6;">
+            <strong style="color:var(--red-bright);">⚠ La gasolina actual no es solo "sucia"</strong> — es una amenaza real para tu motor Dynamic Force. Nuestro servicio elimina el problema de raíz y protege tu inversión con tecnología de precisión.
+          </div>
 
-          <!-- Bullets -->
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem 0;margin-bottom:1.5rem;">
-            <span style="font-size:0.78rem;color:rgba(245,245,248,0.6);display:flex;align-items:center;gap:7px;"><span style="color:var(--red);font-size:0.7rem;">✦</span> Diagnóstico incluido</span>
-            <span style="font-size:0.78rem;color:rgba(245,245,248,0.6);display:flex;align-items:center;gap:7px;"><span style="color:var(--red);font-size:0.7rem;">✦</span> ECU personalizada a tu vehículo</span>
-            <span style="font-size:0.78rem;color:rgba(245,245,248,0.6);display:flex;align-items:center;gap:7px;"><span style="color:var(--red);font-size:0.7rem;">✦</span> Ford · Chevrolet · Jeep · Toyota</span>
-            <span style="font-size:0.78rem;color:rgba(245,245,248,0.6);display:flex;align-items:center;gap:7px;"><span style="color:var(--red);font-size:0.7rem;">✦</span> Entrega mismo día (según modelo)</span>
+          <!-- Qué incluye -->
+          <div style="font-family:var(--font-mono);font-size:0.6rem;color:var(--red);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:0.7rem;">¿Qué incluye tu Servicio Integral?</div>
+          <div style="display:flex;flex-direction:column;gap:0.6rem;margin-bottom:1.2rem;">
+            <div style="display:flex;gap:10px;align-items:flex-start;font-size:0.8rem;color:rgba(245,245,248,0.75);line-height:1.55;">
+              <span style="color:var(--red);font-weight:700;flex-shrink:0;">1.</span>
+              <span><strong style="color:var(--white);">EGR Delete (Físico + Software):</strong> Bloqueo con láminas CNC y reprogramación de la PCM para gestionar múltiples octanajes (87 o 95) sin pistoneos.</span>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start;font-size:0.8rem;color:rgba(245,245,248,0.75);line-height:1.55;">
+              <span style="color:var(--red);font-weight:700;flex-shrink:0;">2.</span>
+              <span><strong style="color:var(--white);">Protección Química (Liqui Moly):</strong> Aditivo Benzin Zusatz para blindar las puntas de inyectores contra la carbonización.</span>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start;font-size:0.8rem;color:rgba(245,245,248,0.75);line-height:1.55;">
+              <span style="color:var(--red);font-weight:700;flex-shrink:0;">3.</span>
+              <span><strong style="color:var(--white);">Mantenimiento Premium:</strong> Cambio de aceite con lubricantes de alta gama y reposición de Long Life Coolant.</span>
+            </div>
+          </div>
+
+          <!-- Resultados -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.45rem 0.5rem;margin-bottom:1.2rem;">
+            <span style="font-size:0.77rem;color:rgba(245,245,248,0.6);display:flex;align-items:flex-start;gap:6px;"><span style="color:#00D97E;font-size:0.7rem;flex-shrink:0;">✓</span> Admisión 100% limpia</span>
+            <span style="font-size:0.77rem;color:rgba(245,245,248,0.6);display:flex;align-items:flex-start;gap:6px;"><span style="color:#00D97E;font-size:0.7rem;flex-shrink:0;">✓</span> Respuesta inmediata</span>
+            <span style="font-size:0.77rem;color:rgba(245,245,248,0.6);display:flex;align-items:flex-start;gap:6px;"><span style="color:#00D97E;font-size:0.7rem;flex-shrink:0;">✓</span> Blindado contra mal combustible</span>
+            <span style="font-size:0.77rem;color:rgba(245,245,248,0.6);display:flex;align-items:flex-start;gap:6px;"><span style="color:#00D97E;font-size:0.7rem;flex-shrink:0;">✓</span> Motor optimizado y eficiente</span>
+          </div>
+
+          <!-- Garantía -->
+          <div style="background:rgba(0,217,126,0.06);border:1px solid rgba(0,217,126,0.2);padding:0.8rem 1rem;margin-bottom:1.2rem;">
+            <div style="font-family:var(--font-mono);font-size:0.58rem;color:#00D97E;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:0.35rem;">Garantía de 1 año — condiciones</div>
+            <div style="font-size:0.76rem;color:rgba(245,245,248,0.65);line-height:1.55;">
+              <span style="display:block;margin-bottom:0.25rem;"><strong style="color:rgba(245,245,248,0.85);">1. Mantenimiento Exclusivo:</strong> Cambios de aceite programados con nuestro equipo.</span>
+              <span style="display:block;"><strong style="color:rgba(245,245,248,0.85);">2. Protección Residual:</strong> Uso de nuestros lubricantes de alta gama para mantener la pureza del motor.</span>
+            </div>
           </div>
 
           <!-- Precio -->
-          <div style="display:inline-flex;align-items:center;gap:1rem;background:var(--graphite2);border:1px solid var(--border);padding:0.9rem 1.3rem;">
+          <div class="egr-precio-box" style="display:inline-flex;align-items:center;gap:1rem;background:var(--graphite2);border:1px solid var(--border);padding:0.9rem 1.3rem;">
             <div>
               <div style="font-family:var(--font-mono);font-size:0.58rem;color:var(--muted);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:0.2rem;">¿Cuánto cuesta?</div>
               <div style="font-family:var(--font-display);font-size:1.5rem;color:var(--white);line-height:1;">Precio variable</div>
@@ -669,21 +710,35 @@
 
           <!-- Campos del formulario -->
           <div style="display:flex;flex-direction:column;gap:0.8rem;margin-bottom:1rem;" id="egr-form">
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.7rem;">
+            <div class="egr-campos-row" style="display:grid;grid-template-columns:1fr 1fr;gap:0.7rem;">
               <div style="display:flex;flex-direction:column;gap:0.3rem;">
                 <label style="font-family:var(--font-mono);font-size:0.58rem;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;">Marca</label>
                 <select id="egr-marca" style="background:var(--graphite2);border:1px solid var(--border);color:var(--white);padding:10px 12px;font-family:var(--font-body);font-size:0.85rem;outline:none;transition:border-color 0.2s;appearance:none;cursor:pointer;width:100%;" onfocus="this.style.borderColor='rgba(232,0,15,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.07)'">
                   <option value="" style="background:var(--graphite2);">Seleccioná</option>
+                  <option style="background:var(--graphite2);">Toyota</option>
+                  <option style="background:var(--graphite2);">Honda</option>
+                  <option style="background:var(--graphite2);">Nissan</option>
+                  <option style="background:var(--graphite2);">Mitsubishi</option>
                   <option style="background:var(--graphite2);">Ford</option>
                   <option style="background:var(--graphite2);">Chevrolet</option>
                   <option style="background:var(--graphite2);">Jeep</option>
-                  <option style="background:var(--graphite2);">Toyota</option>
                   <option style="background:var(--graphite2);">Otra</option>
                 </select>
               </div>
               <div style="display:flex;flex-direction:column;gap:0.3rem;">
-                <label style="font-family:var(--font-mono);font-size:0.58rem;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;">Modelo y año</label>
-                <input id="egr-modelo" type="text" placeholder="Ej: Ranger 2018" style="background:var(--graphite2);border:1px solid var(--border);color:var(--white);padding:10px 12px;font-family:var(--font-body);font-size:0.85rem;outline:none;transition:border-color 0.2s;width:100%;" onfocus="this.style.borderColor='rgba(232,0,15,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.07)'" />
+                <label style="font-family:var(--font-mono);font-size:0.58rem;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;">Modelo</label>
+                <select id="egr-modelo" style="background:var(--graphite2);border:1px solid var(--border);color:var(--white);padding:10px 12px;font-family:var(--font-body);font-size:0.85rem;outline:none;transition:border-color 0.2s;appearance:none;cursor:pointer;width:100%;" onfocus="this.style.borderColor='rgba(232,0,15,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.07)'">
+                  <option value="" style="background:var(--graphite2);">Seleccioná</option>
+                  <option style="background:var(--graphite2);">Corolla</option>
+                  <option style="background:var(--graphite2);">Corolla Cross</option>
+                  <option style="background:var(--graphite2);">Camry</option>
+                  <option style="background:var(--graphite2);">RAV4</option>
+                  <option style="background:var(--graphite2);">Levin</option>
+                  <option style="background:var(--graphite2);">Frontlander</option>
+                  <option style="background:var(--graphite2);">C-HR</option>
+                  <option style="background:var(--graphite2);">Highlander</option>
+                  <option style="background:var(--graphite2);">OTRO</option>
+                </select>
               </div>
             </div>
             <div style="display:flex;flex-direction:column;gap:0.3rem;">
@@ -693,7 +748,7 @@
           </div>
 
           <!-- Botón WhatsApp -->
-          <button onclick="enviarCotizacionEGR()" style="width:100%;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:var(--red);color:white;font-weight:700;font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;padding:14px 22px;border:none;cursor:pointer;clip-path:polygon(0 0,calc(100% - 9px) 0,100% 9px,100% 100%,9px 100%,0 calc(100% - 9px));transition:opacity 0.2s;" onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
+          <button id="egr-btn-wa" onclick="enviarCotizacionEGR()" style="width:100%;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:var(--red);color:white;font-weight:700;font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;padding:14px 22px;border:none;cursor:pointer;clip-path:polygon(0 0,calc(100% - 9px) 0,100% 9px,100% 100%,9px 100%,0 calc(100% - 9px));transition:opacity 0.2s;" onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.557 4.122 1.528 5.855L0 24l6.335-1.505A11.946 11.946 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.007-1.375l-.36-.214-3.727.977.994-3.634-.235-.374A9.818 9.818 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
             Enviar por WhatsApp
           </button>
@@ -707,16 +762,16 @@
     <script>
     function enviarCotizacionEGR() {
       var marca = document.getElementById('egr-marca').value;
-      var modelo = document.getElementById('egr-modelo').value.trim();
+      var modelo = document.getElementById('egr-modelo').value;
       var km = document.getElementById('egr-km').value.trim();
       if (!marca || !modelo || !km) {
         var campos = document.querySelectorAll('#egr-form select, #egr-form input');
         campos.forEach(function(c) {
-          if (!c.value.trim()) { c.style.borderColor = 'rgba(232,0,15,0.7)'; }
+          if (!c.value || !c.value.trim()) { c.style.borderColor = 'rgba(232,0,15,0.7)'; }
         });
         return;
       }
-      var txt = 'Hola Valentino Motors! Quiero cotizar la Reprogramación y Eliminación de EGR para mi vehículo:\n\n🚗 Marca: ' + marca + '\n📋 Modelo/Año: ' + modelo + '\n⏱ Kilometraje: ' + km + '\n\n¿Cuánto costaría el servicio completo?';
+      var txt = 'Hola Valentino Motors! Quiero cotizar el Pack EGR Delete para mi Toyota Dynamic Force:\n\n🚗 Marca: ' + marca + '\n📋 Modelo: ' + modelo + '\n⏱ Kilometraje: ' + km + '\n\n¿Cuánto costaría el servicio completo?';
       window.open('https://wa.me/584242740585?text=' + encodeURIComponent(txt), '_blank', 'noopener,noreferrer');
     }
     </script>
