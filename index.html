@@ -18,8 +18,7 @@
 <link rel="preload" as="image" href="https://res.cloudinary.com/dvvuwigmy/image/upload/w_828,h_466,c_fill,f_jpg,q_80/v1779059633/insta_video_2208_vxavh9" fetchpriority="high" media="(max-width: 768px)">
 <link rel="preload" as="image" href="https://res.cloudinary.com/dvvuwigmy/image/upload/w_1920,h_1080,c_fill,f_jpg,q_85/v1779059633/insta_video_2208_vxavh9" fetchpriority="high" media="(min-width: 769px)">
 
-<link rel="preload" as="fetch" href="https://res.cloudinary.com/dvvuwigmy/video/upload/w_1280,q_80,vc_h264,f_mp4,ac_none/v1779059633/insta_video_2208_vxavh9.mp4" crossorigin media="(min-width: 769px)">
-<link rel="preload" as="fetch" href="https://res.cloudinary.com/dvvuwigmy/video/upload/w_720,q_75,vc_h264,f_mp4,ac_none/v1779059633/insta_video_2208_vxavh9.mp4" crossorigin media="(max-width: 768px)">
+<link rel="preload" as="video" href="https://res.cloudinary.com/dvvuwigmy/video/upload/w_1280,q_70,vc_h264,f_mp4,ac_none/v1779059633/insta_video_2208_vxavh9.mp4" crossorigin fetchpriority="high">
 <meta name="description" content="Valentino Motors — Diagnóstico computarizado y reparación automotriz en Catia La Mar, La Guaira. Reprogramación ECU, eliminación EGR, entonación de motor, suspensión y más. Garantía en todos los servicios. Consultá gratis — respondemos en menos de 30 minutos.">
 <meta name="keywords" content="servicio automotriz Catia La Mar, reparacion de vehiculos La Guaira Venezuela, reprogramacion toyota Venezuela, eliminacion EGR Venezuela, reprogramacion ECU Catia La Mar, entonacion de motor Venezuela, cambio de aceite Catia La Mar, reconstruccion de motores Venezuela, instalacion suspension Venezuela, repuestos automotriz Venezuela, taller ford chevrolet jeep toyota Venezuela, posventa automotriz La Guaira, Valentino Motors">
 <meta name="robots" content="index, follow">
@@ -402,27 +401,9 @@
       disableremoteplayback
       x-webkit-airplay="deny"
       fetchpriority="high"
+      src="https://res.cloudinary.com/dvvuwigmy/video/upload/w_1280,q_70,vc_h264,f_mp4,ac_none/v1779059633/insta_video_2208_vxavh9.mp4"
       poster="https://res.cloudinary.com/dvvuwigmy/image/upload/w_1920,h_1080,c_fill,f_jpg,q_85/v1779059633/insta_video_2208_vxavh9"
-    >
-      <!-- Mobile: 720p alta calidad -->
-      <source
-        media="(max-width: 768px)"
-        src="https://res.cloudinary.com/dvvuwigmy/video/upload/w_720,q_75,vc_h264,f_mp4,ac_none/v1779059633/insta_video_2208_vxavh9.mp4"
-        type="video/mp4"
-      >
-      <!-- Desktop: WebM VP9 primero (menor tamaño, misma calidad) -->
-      <source
-        media="(min-width: 769px)"
-        src="https://res.cloudinary.com/dvvuwigmy/video/upload/w_1280,q_80,vc_vp9,f_webm,ac_none/v1779059633/insta_video_2208_vxavh9.webm"
-        type="video/webm"
-      >
-      <!-- Desktop: H.264 fallback alta calidad -->
-      <source
-        media="(min-width: 769px)"
-        src="https://res.cloudinary.com/dvvuwigmy/video/upload/w_1280,q_80,vc_h264,f_mp4,ac_none/v1779059633/insta_video_2208_vxavh9.mp4"
-        type="video/mp4"
-      >
-    </video>
+    ></video>
     <div class="hero-video-overlay"></div>
   </div>
   <div class="hero-grid"></div>
@@ -769,12 +750,9 @@
                 <select id="egr-marca" style="background:var(--graphite2);border:1px solid var(--border);color:var(--white);padding:10px 12px;font-family:var(--font-body);font-size:0.85rem;outline:none;transition:border-color 0.2s;appearance:none;cursor:pointer;width:100%;" onfocus="this.style.borderColor='rgba(232,0,15,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.07)'">
                   <option value="" style="background:var(--graphite2);">Seleccioná</option>
                   <option style="background:var(--graphite2);">Toyota</option>
-                  <option style="background:var(--graphite2);">Honda</option>
-                  <option style="background:var(--graphite2);">Nissan</option>
-                  <option style="background:var(--graphite2);">Mitsubishi</option>
+                  <option style="background:var(--graphite2);">Jeep</option>
                   <option style="background:var(--graphite2);">Ford</option>
                   <option style="background:var(--graphite2);">Chevrolet</option>
-                  <option style="background:var(--graphite2);">Jeep</option>
                   <option style="background:var(--graphite2);">Otra</option>
                 </select>
               </div>
@@ -1225,11 +1203,9 @@
               <select id="fl-marca">
                 <option value="">Seleccioná</option>
                 <option>Toyota</option>
+                <option>Jeep</option>
                 <option>Ford</option>
                 <option>Chevrolet</option>
-                <option>Nissan</option>
-                <option>Mitsubishi</option>
-                <option>Volkswagen</option>
                 <option>Otra</option>
                 <option>Mixta</option>
               </select>
@@ -1848,11 +1824,9 @@ type: 'options',
 key: 'marca',
 opts: [
 { label: 'Toyota', next: 'modelo' },
+{ label: 'Jeep', next: 'modelo' },
 { label: 'Ford', next: 'modelo' },
-{ label: 'Nissan', next: 'modelo' },
 { label: 'Chevrolet', next: 'modelo' },
-{ label: 'Mitsubishi', next: 'modelo' },
-{ label: 'Volkswagen', next: 'modelo' },
 { label: 'Otra marca', next: 'modelo' },
 ]
 },
