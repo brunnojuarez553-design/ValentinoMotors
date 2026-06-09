@@ -1807,105 +1807,56 @@ if (mobileOpen) closeMobile();
 }
 });
 });
+// ─── CHAT IA VALENTINO MOTORS ───────────────────────────────────────────────
 const WA_NUMBER = '584242740585';
-const lead = { nombre: '', telefono: '', marca: '', modelo: '', servicio: '', problema: '' };
-const flow = [
-{
-id: 'welcome',
-label: '',
-bot: '¡Hola! 👋 Soy el asistente de *Valentino Motors LG*.\n\nSomos especialistas en fallas que *otros talleres no pudieron resolver*.\n\n¿En qué te puedo ayudar hoy?',
-type: 'options',
-opts: [
-{ label: '🔧 Tengo una falla que nadie resolvió', next: 'nombre' },
-{ label: '🔴 Reprogramación y eliminación de EGR', next: 'nombre' },
-{ label: '🔴 Check Engine encendido', next: 'nombre' },
-{ label: '📋 Diagnóstico preventivo', next: 'nombre' },
-{ label: '💬 Otra consulta', next: 'nombre' },
-]
-},
-{
-id: 'nombre',
-label: 'Paso 1 de 5 · Tu nombre',
-bot: 'Perfecto. Para ayudarte mejor, ¿cuál es tu nombre?',
-type: 'input',
-placeholder: 'Ej: Carlos, María...',
-key: 'nombre',
-next: 'telefono',
-validate: v => v.length >= 2 ? null : 'Ingresá al menos 2 caracteres.'
-},
-{
-id: 'telefono',
-label: 'Paso 2 de 5 · Tu contacto',
-bot: l => `¡Mucho gusto, *${l.nombre}*! 😊\n\n¿Cuál es tu WhatsApp? (opcional — por si se corta la conexión)`,
-type: 'input',
-placeholder: 'Ej: 0412-555-1234 (opcional)',
-key: 'telefono',
-next: 'marca',
-skipLabel: 'Prefiero no dar mi número →'
-},
-{
-id: 'marca',
-label: 'Paso 3 de 5 · Tu vehículo',
-bot: '¿Cuál es la marca de tu vehículo?',
-type: 'options',
-key: 'marca',
-opts: [
-{ label: 'Toyota', next: 'modelo' },
-{ label: 'Jeep', next: 'modelo' },
-{ label: 'Ford', next: 'modelo' },
-{ label: 'Chevrolet', next: 'modelo' },
-{ label: 'Otra marca', next: 'modelo' },
-]
-},
-{
-id: 'modelo',
-label: 'Paso 3 de 5 · Modelo y año',
-bot: l => `¿Modelo y año de tu *${l.marca}*?\n(Ej: Hilux 2020, Ranger 2019, Frontier 2021)`,
-type: 'input',
-placeholder: 'Ej: Hilux 2020 4x4',
-key: 'modelo',
-next: 'servicio',
-validate: v => v.length >= 2 ? null : 'Indicá el modelo y año.'
-},
-{
-id: 'servicio',
-label: 'Paso 4 de 5 · Tipo de servicio',
-bot: '¿Qué tipo de servicio necesitás?',
-type: 'options',
-key: 'servicio',
-opts: [
-{ label: '🖥️ Diagnóstico computarizado completo', next: 'problema' },
-{ label: '⚡ Diagnóstico falla eléctrica', next: 'problema' },
-{ label: '🔴 Reprogramación y eliminación de EGR', next: 'problema' },
-{ label: '⚙️ Diagnóstico mecánico con escáner', next: 'problema' },
-{ label: '🏎️ Optimización de motor', next: 'problema' },
-{ label: '🛡️ Service preventivo', next: 'problema' },
-{ label: '❓ No sé cuál necesito', next: 'problema' },
-]
-},
-{
-id: 'problema',
-label: 'Paso 5 de 5 · Describí la falla',
-bot: l => `Casi listo, *${l.nombre}* 💪\n\nDescribí brevemente el problema de tu *${l.marca} ${l.modelo}*. Cuanto más detallés, mejor podemos orientarte.`,
-type: 'input',
-placeholder: 'Ej: Check engine encendido hace 2 semanas, ya fue a 2 talleres...',
-key: 'problema',
-next: 'resumen',
-validate: v => v.length >= 8 ? null : 'Describí el problema con más detalle.'
-},
-{
-id: 'resumen',
-label: 'Resumen de tu consulta',
-bot: null,
-type: 'summary'
-}
-];
-const flowMap = {};
-flow.forEach(n => flowMap[n.id] = n);
+const AI_SYSTEM_PROMPT = `Sos el asesor técnico virtual de Valentino Motors, un taller automotriz especializado en diagnóstico computarizado, reprogramación ECU, eliminación EGR, entonación de motor y reparación electrónica avanzada. Estás en Catia La Mar, La Guaira, Venezuela.
+
+Hablás en español venezolano, con tono humano, cercano y profesional. Nunca sonás robótico. Usás tuteo (tú/te), no voseo.
+
+OBJETIVO: Conversar con el cliente, entender su problema, identificar el servicio adecuado y recopilar los datos para agendar un turno. La conversación debe sentirse natural — no hagas preguntas tipo formulario. Hacé una o dos preguntas por vez.
+
+SERVICIOS: Diagnóstico computarizado avanzado, Reprogramación ECU personalizada, Eliminación de válvula EGR, Entonación y calibración de motor, Cambio de aceite, Instalación de suspensión, Reconstrucción de motores, Venta de repuestos. Especialistas en Toyota, Ford, Chevrolet y Jeep (año 2010 en adelante).
+
+FLUJO NATURAL:
+1. Saludá cálidamente y preguntá qué problema tiene su vehículo.
+2. Profundizá con preguntas técnicas simples (marca, modelo, año, síntomas, desde cuándo, si fue a otro taller).
+3. Relacioná el problema con el servicio correcto y generá confianza mencionando el diferencial del taller.
+4. Recopilá: nombre, teléfono, marca/modelo/año, descripción del problema, servicio estimado, fecha preferida, urgencia.
+5. Cuando tengas suficiente info, generá un resumen estructurado con emojis y avisá que los conectarás por WhatsApp.
+
+DETECCIÓN INTELIGENTE:
+- Check engine + pérdida de potencia + humo negro → EGR / reprogramación ECU
+- Consumo alto o falta de respuesta → entonación de motor
+- Ruidos o golpes → suspensión
+- Problemas eléctricos o módulos → diagnóstico ECU avanzado
+- URGENTE: sobrecalentamiento, humo excesivo, motor apagándose, pérdida total de potencia → sugerí no seguir usando el vehículo
+
+REGLAS:
+- No inventes diagnósticos definitivos sin revisar el vehículo.
+- No des precios exactos.
+- Priorizá el diagnóstico antes de recomendar cambios de piezas.
+- Respuestas cortas, claras y humanas. Máximo 3-4 líneas por respuesta.
+- Usá emojis con moderación (1-2 por mensaje como máximo).
+- Cuando tengas todos los datos, mostrá el resumen exactamente en este formato y en este orden:
+
+✅ Perfecto, ya tengo toda la información.
+
+👤 Nombre: [nombre]
+📞 Teléfono: [teléfono o "No proporcionado"]
+🚗 Vehículo: [marca, modelo, año]
+🔧 Problema: [descripción]
+🛠 Servicio estimado: [servicio]
+📅 Fecha preferida: [fecha o "A coordinar"]
+⚠️ Urgencia: [Normal / Urgente]
+
+Ahora podés coordinar directamente con el equipo por WhatsApp.`;
+
+let chatHistory = [];
 let vmlOpen = false;
-let currentNodeId = null;
 let bubbleTimer = null;
-let isRendering = false;
+let isWaitingAI = false;
+let summaryDetected = false;
+
 const vmlWindow = document.getElementById('vmlWindow');
 const vmlLaunchBtn = document.getElementById('vmlLaunchBtn');
 const vmlCloseBtn = document.getElementById('vmlCloseBtn');
@@ -1918,216 +1869,185 @@ const vmlProgress = document.getElementById('vmlProgress');
 const vmlStepLabel = document.getElementById('vmlStepLabel');
 const vmlBubble = document.getElementById('vmlBubble');
 const vmlNotif = document.getElementById('vmlNotif');
+
 bubbleTimer = setTimeout(() => {
-vmlBubble.style.display = 'block';
-setTimeout(() => {
-vmlBubble.style.transition = 'opacity 0.5s';
-vmlBubble.style.opacity = '0';
-setTimeout(() => { vmlBubble.style.display = 'none'; }, 500);
-}, 8000);
+  vmlBubble.style.display = 'block';
+  setTimeout(() => {
+    vmlBubble.style.transition = 'opacity 0.5s';
+    vmlBubble.style.opacity = '0';
+    setTimeout(() => { vmlBubble.style.display = 'none'; }, 500);
+  }, 8000);
 }, 30000);
+
 function vmlToggle() {
-vmlOpen = !vmlOpen;
-vmlWindow.classList.toggle('open', vmlOpen);
-vmlLaunchBtn.classList.toggle('hidden', vmlOpen);
-vmlCloseBtn.classList.toggle('visible', vmlOpen);
-vmlBubble.style.display = 'none';
-clearTimeout(bubbleTimer);
-if (vmlOpen && currentNodeId === null) {
-if (vmlNotif) vmlNotif.style.display = 'none';
-setTimeout(() => renderNode('welcome'), 400);
+  vmlOpen = !vmlOpen;
+  vmlWindow.classList.toggle('open', vmlOpen);
+  vmlLaunchBtn.classList.toggle('hidden', vmlOpen);
+  vmlCloseBtn.classList.toggle('visible', vmlOpen);
+  vmlBubble.style.display = 'none';
+  clearTimeout(bubbleTimer);
+  if (vmlOpen && chatHistory.length === 0) {
+    if (vmlNotif) vmlNotif.style.display = 'none';
+    vmlInputRow.style.display = 'flex';
+    vmlInput.placeholder = 'Escribí tu consulta...';
+    setTimeout(() => startChat(), 400);
+  }
 }
-}
+
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && vmlOpen) vmlToggle(); });
-function renderNode(nodeId) {
-if (isRendering) return;
-const node = flowMap[nodeId];
-if (!node) return;
-currentNodeId = nodeId;
-isRendering = true;
-const steps = ['nombre','telefono','marca','modelo','servicio','problema','resumen'];
-const idx = steps.indexOf(nodeId);
-const pct = nodeId === 'welcome' ? 0
-: nodeId === 'resumen' ? 100
-: Math.round((idx / (steps.length - 1)) * 100);
-vmlProgress.style.width = pct + '%';
-vmlStepLabel.textContent = node.label || '';
-vmlOptions.innerHTML = '';
-vmlInputRow.style.display = 'none';
-if (node.type === 'summary') {
-isRendering = false;
-renderSummary();
-return;
+
+async function startChat() {
+  addTypingIndicator();
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: AI_SYSTEM_PROMPT,
+        messages: [{ role: 'user', content: '(el cliente acaba de abrir el chat — saludalo y preguntale en qué podés ayudarlo)' }]
+      })
+    });
+    const data = await res.json();
+    removeTypingIndicator();
+    const text = data.content && data.content[0] ? data.content[0].text : '¡Hola! 👋 Bienvenido a Valentino Motors. ¿En qué puedo ayudarte con tu vehículo hoy?';
+    chatHistory.push({ role: 'assistant', content: text });
+    addBotMsg(text);
+    vmlStepLabel.textContent = 'Asesor Técnico IA · 24/7';
+    updateProgress();
+  } catch(e) {
+    removeTypingIndicator();
+    const fallback = '¡Hola! 👋 Bienvenido a Valentino Motors. ¿Qué problema tiene tu vehículo o qué servicio necesitás?';
+    chatHistory.push({ role: 'assistant', content: fallback });
+    addBotMsg(fallback);
+  }
 }
-const botText = typeof node.bot === 'function' ? node.bot(lead) : node.bot;
-addTyping(() => {
-if (botText) addBotMsg(botText);
-if (node.type === 'options') {
-showOptions(node.opts, node.key);
-} else if (node.type === 'input') {
-showInput(node);
+
+async function sendMessage() {
+  const val = vmlInput.value.trim();
+  if (!val || isWaitingAI) return;
+  vmlInput.value = '';
+  addUserMsg(val);
+  chatHistory.push({ role: 'user', content: val });
+  isWaitingAI = true;
+  vmlSendBtn.disabled = true;
+  vmlInput.disabled = true;
+  addTypingIndicator();
+  updateProgress();
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: AI_SYSTEM_PROMPT,
+        messages: chatHistory
+      })
+    });
+    const data = await res.json();
+    removeTypingIndicator();
+    const text = data.content && data.content[0] ? data.content[0].text : 'Disculpá, ocurrió un error. Por favor intentá de nuevo.';
+    chatHistory.push({ role: 'assistant', content: text });
+    addBotMsg(text);
+    updateProgress();
+    if (text.includes('👤 Nombre:') && text.includes('🚗 Vehículo:') && !summaryDetected) {
+      summaryDetected = true;
+      vmlProgress.style.width = '100%';
+      vmlStepLabel.textContent = 'Resumen listo ✅';
+      setTimeout(() => showWhatsAppButton(text), 700);
+    }
+  } catch(e) {
+    removeTypingIndicator();
+    addBotMsg('Disculpá, hubo un problema de conexión. Por favor intentá de nuevo en unos segundos.');
+  }
+  isWaitingAI = false;
+  vmlSendBtn.disabled = false;
+  vmlInput.disabled = false;
+  setTimeout(() => vmlInput.focus(), 50);
 }
-isRendering = false;
-});
+
+function updateProgress() {
+  const count = chatHistory.filter(m => m.role === 'user').length;
+  const pct = Math.min(Math.round((count / 6) * 90), 90);
+  if (!summaryDetected) vmlProgress.style.width = pct + '%';
 }
-function addTyping(cb) {
-const el = document.createElement('div');
-el.className = 'vml-msg-typing';
-el.innerHTML = '<span></span><span></span><span></span>';
-vmlMessages.appendChild(el);
-scrollBottom();
-setTimeout(() => {
-el.remove();
-cb();
-scrollBottom();
-}, 800 + Math.random() * 350);
+
+function showWhatsAppButton(summaryText) {
+  const wa = document.createElement('button');
+  wa.className = 'vml-opt whatsapp-btn';
+  wa.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="white" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Enviar resumen por WhatsApp`;
+  wa.onclick = () => sendToWhatsApp(summaryText);
+  vmlOptions.innerHTML = '';
+  vmlOptions.appendChild(wa);
+  const restart = document.createElement('button');
+  restart.className = 'vml-opt full';
+  restart.textContent = '↩ Nueva consulta';
+  restart.style.opacity = '0.55';
+  restart.onclick = () => {
+    chatHistory = [];
+    summaryDetected = false;
+    vmlMessages.innerHTML = '';
+    vmlOptions.innerHTML = '';
+    vmlProgress.style.width = '0%';
+    vmlStepLabel.textContent = '';
+    vmlInputRow.style.display = 'flex';
+    setTimeout(() => startChat(), 300);
+  };
+  vmlOptions.appendChild(restart);
+  scrollBottom();
 }
+
+function sendToWhatsApp(summaryText) {
+  const clean = (summaryText || '')
+    .replace(/✅ Perfecto.*?\n\n/s, '')
+    .replace(/Ahora podés coordinar.*$/s, '')
+    .trim();
+  const msg = `Hola *Valentino Motors LG* 👋\n\nLes comparto los datos del cliente para agendar el turno:\n\n${clean}\n\nEl cliente ya fue asesorado y está listo para coordinar.`;
+  window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+function addTypingIndicator() {
+  const el = document.createElement('div');
+  el.className = 'vml-msg-typing';
+  el.id = 'vml-typing-indicator';
+  el.innerHTML = '<span></span><span></span><span></span>';
+  vmlMessages.appendChild(el);
+  scrollBottom();
+}
+
+function removeTypingIndicator() {
+  const el = document.getElementById('vml-typing-indicator');
+  if (el) el.remove();
+}
+
 function addBotMsg(text) {
-const el = document.createElement('div');
-el.className = 'vml-msg vml-msg-bot';
-el.innerHTML = text
-.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-.replace(/\n/g, '<br>')
-.replace(/\*(.*?)\*/g, '<strong>$1</strong>');
-vmlMessages.appendChild(el);
-scrollBottom();
+  const el = document.createElement('div');
+  el.className = 'vml-msg vml-msg-bot';
+  el.innerHTML = text
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/\n/g, '<br>')
+    .replace(/\*(.*?)\*/g, '<strong>$1</strong>');
+  vmlMessages.appendChild(el);
+  scrollBottom();
 }
+
 function addUserMsg(text) {
-const el = document.createElement('div');
-el.className = 'vml-msg vml-msg-user';
-el.textContent = text;
-vmlMessages.appendChild(el);
-scrollBottom();
+  const el = document.createElement('div');
+  el.className = 'vml-msg vml-msg-user';
+  el.textContent = text;
+  vmlMessages.appendChild(el);
+  scrollBottom();
 }
-function showOptions(opts, key) {
-vmlOptions.innerHTML = '';
-opts.forEach(opt => {
-const btn = document.createElement('button');
-btn.className = 'vml-opt' + (opts.length <= 2 ? ' full' : '');
-btn.textContent = opt.label;
-btn.onclick = () => {
-if (key) lead[key] = opt.label;
-vmlOptions.querySelectorAll('button').forEach(b => b.disabled = true);
-addUserMsg(opt.label);
-vmlOptions.innerHTML = '';
-setTimeout(() => renderNode(opt.next), 500);
-};
-vmlOptions.appendChild(btn);
-});
-}
-function showInput(node) {
-vmlOptions.innerHTML = '';
-if (node.skipLabel) {
-const skip = document.createElement('button');
-skip.className = 'vml-opt full';
-skip.textContent = node.skipLabel;
-skip.style.opacity = '0.6';
-skip.onclick = () => {
-lead[node.key] = '';
-skip.disabled = true;
-addUserMsg('(omitido)');
-vmlInputRow.style.display = 'none';
-vmlOptions.innerHTML = '';
-setTimeout(() => renderNode(node.next), 500);
-};
-vmlOptions.appendChild(skip);
-}
-vmlInputRow.style.display = 'flex';
-vmlInput.placeholder = node.placeholder || 'Escribí tu respuesta...';
-vmlInput.value = '';
-vmlInput.style.borderColor = '';
-setTimeout(() => vmlInput.focus(), 50);
-const submit = () => {
-const val = vmlInput.value.trim();
-if (node.validate) {
-const err = node.validate(val);
-if (err) {
-vmlInput.style.borderColor = 'var(--red)';
-vmlInput.placeholder = err;
-vmlInput.value = '';
-vmlInput.focus();
-return;
-}
-}
-lead[node.key] = val;
-vmlInputRow.style.display = 'none';
-vmlOptions.innerHTML = '';
-vmlSendBtn.onclick = null;
-vmlInput.onkeydown = null;
-addUserMsg(val || '(sin respuesta)');
-setTimeout(() => renderNode(node.next), 500);
-};
-vmlSendBtn.onclick = submit;
-vmlInput.onkeydown = e => { if (e.key === 'Enter') { e.preventDefault(); submit(); } };
-vmlInput.oninput = () => { vmlInput.style.borderColor = ''; };
-}
-function renderSummary() {
-vmlOptions.innerHTML = '';
-vmlInputRow.style.display = 'none';
-vmlStepLabel.textContent = 'Resumen de tu consulta';
-vmlProgress.style.width = '100%';
-const summaryText = [
-'✅ *Resumen de tu consulta:*',
-'',
-`👤 *Nombre:* ${lead.nombre}`,
-`🚗 *Vehículo:* ${lead.marca} ${lead.modelo}`,
-`🔧 *Servicio:* ${lead.servicio}`,
-`📝 *Problema:* ${lead.problema}`,
-lead.telefono ? `📱 *Tel:* ${lead.telefono}` : ''
-].filter(l => l !== null).join('\n');
-addTyping(() => {
-addBotMsg(summaryText);
-setTimeout(() => {
-addTyping(() => {
-addBotMsg('¡Perfecto! Te voy a conectar con nuestro especialista ahora mismo. Respondemos en *menos de 30 minutos* ⚡');
-setTimeout(() => {
-const wa = document.createElement('button');
-wa.className = 'vml-opt whatsapp-btn';
-wa.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="white" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Enviar consulta por WhatsApp`;
-wa.onclick = () => sendToWhatsApp();
-vmlOptions.appendChild(wa);
-const restart = document.createElement('button');
-restart.className = 'vml-opt full';
-restart.textContent = '↩ Hacer otra consulta';
-restart.style.opacity = '0.55';
-restart.onclick = () => {
-vmlMessages.innerHTML = '';
-vmlOptions.innerHTML = '';
-vmlInputRow.style.display = 'none';
-vmlStepLabel.textContent = '';
-vmlProgress.style.width = '0%';
-Object.keys(lead).forEach(k => lead[k] = '');
-currentNodeId = null;
-isRendering = false;
-setTimeout(() => renderNode('welcome'), 300);
-};
-vmlOptions.appendChild(restart);
-scrollBottom();
-}, 500);
-});
-}, 900);
-});
-}
-function sendToWhatsApp() {
-const lines = [
-`Hola *Valentino Motors LG* 👋`,
-``,
-`Soy *${lead.nombre}*${lead.telefono ? ` (${lead.telefono})` : ''} y tengo una consulta.`,
-``,
-`🚗 *Vehículo:* ${lead.marca} ${lead.modelo}`,
-`🔧 *Servicio:* ${lead.servicio}`,
-`📝 *Problema:*`,
-lead.problema,
-``,
-`¿Pueden ayudarme?`
-];
-const msg = encodeURIComponent(lines.join('\n'));
-window.open(`https://wa.me/584242740585?text=${msg}`, '_blank');
-}
+
+vmlSendBtn.onclick = sendMessage;
+vmlInput.onkeydown = e => { if (e.key === 'Enter') { e.preventDefault(); sendMessage(); } };
+
 function scrollBottom() {
-requestAnimationFrame(() => {
-vmlMessages.scrollTop = vmlMessages.scrollHeight;
-});
+  requestAnimationFrame(() => {
+    vmlMessages.scrollTop = vmlMessages.scrollHeight;
+  });
 }
 function openPage(id) {
 closeMobile();
