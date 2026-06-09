@@ -15,10 +15,11 @@
 <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
 <link rel="dns-prefetch" href="https://res.cloudinary.com">
 
-<link rel="preload" as="image" href="https://res.cloudinary.com/dvvuwigmy/image/upload/w_828,h_466,c_fill,f_jpg,q_80/v1779059633/insta_video_2208_vxavh9" fetchpriority="high" media="(max-width: 768px)">
-<link rel="preload" as="image" href="https://res.cloudinary.com/dvvuwigmy/image/upload/w_1920,h_1080,c_fill,f_jpg,q_85/v1779059633/insta_video_2208_vxavh9" fetchpriority="high" media="(min-width: 769px)">
+<link rel="preload" as="image" href="https://res.cloudinary.com/dvvuwigmy/image/upload/w_828,h_466,c_fill,f_jpg,q_80/v1779059633/insta_video_2208_vxavh9.jpg" fetchpriority="high" media="(max-width: 768px)">
+<link rel="preload" as="image" href="https://res.cloudinary.com/dvvuwigmy/image/upload/w_1920,h_1080,c_fill,f_jpg,q_85/v1779059633/insta_video_2208_vxavh9.jpg" fetchpriority="high" media="(min-width: 769px)">
 
-<link rel="preload" as="video" href="https://res.cloudinary.com/dvvuwigmy/video/upload/w_640,q_40,f_mp4,ac_none/v1779059633/insta_video_2208_vxavh9.mp4" crossorigin fetchpriority="high">
+<link rel="preload" as="video" href="https://res.cloudinary.com/dvvuwigmy/video/upload/w_828,q_50,f_mp4,ac_none/v1779059633/insta_video_2208_vxavh9.mp4" crossorigin fetchpriority="high" media="(max-width: 768px)">
+<link rel="preload" as="video" href="https://res.cloudinary.com/dvvuwigmy/video/upload/w_1280,q_70,f_mp4,ac_none/v1779059633/insta_video_2208_vxavh9.mp4" crossorigin fetchpriority="high" media="(min-width: 769px)">
 <meta name="description" content="Valentino Motors — Diagnóstico computarizado y reparación automotriz en Catia La Mar, La Guaira. Reprogramación ECU, eliminación EGR, entonación de motor, suspensión y más. Garantía en todos los servicios. Consultá gratis — respondemos en menos de 30 minutos.">
 <meta name="keywords" content="servicio automotriz Catia La Mar, reparacion de vehiculos La Guaira Venezuela, reprogramacion toyota Venezuela, eliminacion EGR Venezuela, reprogramacion ECU Catia La Mar, entonacion de motor Venezuela, cambio de aceite Catia La Mar, reconstruccion de motores Venezuela, instalacion suspension Venezuela, repuestos automotriz Venezuela, taller ford chevrolet jeep toyota Venezuela, posventa automotriz La Guaira, Valentino Motors">
 <meta name="robots" content="index, follow">
@@ -402,8 +403,10 @@
       disableremoteplayback
       x-webkit-airplay="deny"
       poster="https://res.cloudinary.com/dvvuwigmy/image/upload/w_1920,h_1080,c_fill,f_jpg,q_85/v1779059633/insta_video_2208_vxavh9.jpg"
-      src="https://res.cloudinary.com/dvvuwigmy/video/upload/w_1280,q_70,f_mp4,ac_none/v1779059633/insta_video_2208_vxavh9.mp4"
-    ></video>
+    >
+      <source src="https://res.cloudinary.com/dvvuwigmy/video/upload/w_828,q_50,f_mp4,ac_none/v1779059633/insta_video_2208_vxavh9.mp4" type="video/mp4" media="(max-width: 768px)">
+      <source src="https://res.cloudinary.com/dvvuwigmy/video/upload/w_1280,q_70,f_mp4,ac_none/v1779059633/insta_video_2208_vxavh9.mp4" type="video/mp4">
+    </video>
     <div class="hero-video-overlay"></div>
   </div>
   <div class="hero-grid"></div>
@@ -623,8 +626,8 @@
       
       <div class="nosotros-right fade-up delay-2">
         <div class="nosotros-photo-wrap">
-          <video id="nosotrosVideo" muted loop playsinline crossorigin="anonymous" style="width:100%;height:100%;object-fit:cover;display:block;filter:saturate(1) brightness(1);" preload="none"
-            poster="https://res.cloudinary.com/dvvuwigmy/video/upload/w_1080,q_80,f_jpg,so_2/v1779062127/insta_video_70029_qgjy1s.jpg"
+          <video id="nosotrosVideo" muted loop playsinline crossorigin="anonymous" style="width:100%;height:100%;object-fit:cover;display:block;filter:saturate(1) brightness(1);" preload="metadata"
+            poster="https://res.cloudinary.com/dvvuwigmy/image/upload/w_560,h_560,c_fill,f_jpg,q_80/v1779062127/insta_video_70029_qgjy1s.jpg"
             src="https://res.cloudinary.com/dvvuwigmy/video/upload/w_1080,q_65,vc_h264,f_mp4/v1779062127/insta_video_70029_qgjy1s.mp4"
           ></video>
           <div class="nosotros-photo-overlay"></div>
@@ -2076,15 +2079,24 @@ if (p && p.catch) p.catch(function(){});
 }
 
 if (hero) {
+hero.style.opacity = '0';
+hero.style.transition = 'opacity 0.6s ease';
+function showHero() {
+if (hero.style.opacity !== '1') {
 hero.style.opacity = '1';
+}
+}
 tryPlay(hero);
-['loadstart','loadedmetadata','loadeddata','canplay','canplaythrough','playing'].forEach(function(ev) {
+['canplay','canplaythrough','playing'].forEach(function(ev) {
+hero.addEventListener(ev, function() { showHero(); tryPlay(hero); }, { passive: true });
+});
+['loadstart','loadedmetadata','loadeddata'].forEach(function(ev) {
 hero.addEventListener(ev, function() { tryPlay(hero); }, { passive: true });
 });
 hero.addEventListener('pause', function() {
 if (!document.hidden) tryPlay(hero);
 }, { passive: true });
-[0, 30, 80, 200, 500, 1000].forEach(function(ms) {
+[0, 50, 150, 400, 800, 1500].forEach(function(ms) {
 setTimeout(function() { tryPlay(hero); }, ms);
 });
 document.addEventListener('visibilitychange', function() {
@@ -2099,6 +2111,8 @@ tryPlay(hero);
 ['touchstart','touchend','click','scroll','keydown','pointerdown'].forEach(function(ev) {
 document.addEventListener(ev, unlockHero, { once: true, passive: true, capture: true });
 });
+// Fallback: if video hasn't shown after 3s, show it anyway (poster visible until then)
+setTimeout(function() { showHero(); }, 3000);
 }
 })();
 
