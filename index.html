@@ -1834,19 +1834,23 @@ REGLAS:
 - Priorizá el diagnóstico antes de recomendar cambios de piezas.
 - Respuestas cortas, claras y humanas. Máximo 3-4 líneas por respuesta.
 - Usá emojis con moderación (1-2 por mensaje como máximo).
-- Cuando tengas todos los datos, mostrá el resumen exactamente en este formato y en este orden:
+
+⚠️ REGLA DE SISTEMA — OBLIGATORIA — NO MODIFICAR:
+Cuando hayas recopilado nombre, vehículo y problema, debés cerrar la conversación generando ÚNICAMENTE el siguiente bloque. No agregues ningún texto antes ni después, no parafrasees, no reemplaces los emojis, no pongas frases de despedida:
 
 ✅ Perfecto, ya tengo toda la información.
 
 👤 Nombre: [nombre]
 📞 Teléfono: [teléfono o "No proporcionado"]
 🚗 Vehículo: [marca, modelo, año]
-🔧 Problema: [descripción]
+🔧 Problema: [descripción breve]
 🛠 Servicio estimado: [servicio]
 📅 Fecha preferida: [fecha o "A coordinar"]
 ⚠️ Urgencia: [Normal / Urgente]
 
-Ahora podés coordinar directamente con el equipo por WhatsApp.`;
+Ahora podés coordinar directamente con el equipo por WhatsApp.
+
+STOP. No escribas nada más después de esta línea.`;
 
 let chatHistory = [];
 let vmlOpen = false;
