@@ -2014,7 +2014,7 @@ function sendToWhatsApp(summaryText) {
       .join('\n')
       .trim();
   }
-  const msg = `Hola *Valentino Motors LG* 👋\n\nDatos del cliente para coordinar turno:\n\n${body}\n\n_Cliente asesorado por IA — listo para coordinar._`;
+  const msg = `Hola *Valentino Motors LG* 👋\n\nDatos del cliente para coordinar turno:\n\n${body}\n\n_Cliente asesorado por Asistente Virtual de Valentino Motors — listo para coordinar._`;
   window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
