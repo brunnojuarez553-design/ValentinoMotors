@@ -18,7 +18,7 @@
 <link rel="preload" as="image" href="https://res.cloudinary.com/dvvuwigmy/image/upload/w_828,h_466,c_fill,f_jpg,q_80/v1779059633/insta_video_2208_vxavh9" fetchpriority="high" media="(max-width: 768px)">
 <link rel="preload" as="image" href="https://res.cloudinary.com/dvvuwigmy/image/upload/w_1920,h_1080,c_fill,f_jpg,q_85/v1779059633/insta_video_2208_vxavh9" fetchpriority="high" media="(min-width: 769px)">
 
-<link rel="preload" as="video" href="https://res.cloudinary.com/dvvuwigmy/video/upload/w_1280,q_70,f_mp4,ac_none/v1779059633/insta_video_2208_vxavh9.mp4" crossorigin fetchpriority="high">
+<link rel="preload" as="video" href="https://res.cloudinary.com/dvvuwigmy/video/upload/w_640,q_40,f_mp4,ac_none/v1779059633/insta_video_2208_vxavh9.mp4" crossorigin fetchpriority="high">
 <meta name="description" content="Valentino Motors — Diagnóstico computarizado y reparación automotriz en Catia La Mar, La Guaira. Reprogramación ECU, eliminación EGR, entonación de motor, suspensión y más. Garantía en todos los servicios. Consultá gratis — respondemos en menos de 30 minutos.">
 <meta name="keywords" content="servicio automotriz Catia La Mar, reparacion de vehiculos La Guaira Venezuela, reprogramacion toyota Venezuela, eliminacion EGR Venezuela, reprogramacion ECU Catia La Mar, entonacion de motor Venezuela, cambio de aceite Catia La Mar, reconstruccion de motores Venezuela, instalacion suspension Venezuela, repuestos automotriz Venezuela, taller ford chevrolet jeep toyota Venezuela, posventa automotriz La Guaira, Valentino Motors">
 <meta name="robots" content="index, follow">
@@ -402,7 +402,7 @@
       x-webkit-airplay="deny"
       poster="https://res.cloudinary.com/dvvuwigmy/image/upload/w_1920,h_1080,c_fill,f_jpg,q_85/v1779059633/insta_video_2208_vxavh9"
     >
-      <source src="https://res.cloudinary.com/dvvuwigmy/video/upload/w_1280,q_70,f_mp4,ac_none/v1779059633/insta_video_2208_vxavh9.mp4" type="video/mp4">
+      <source id="heroVideoSrc" src="https://res.cloudinary.com/dvvuwigmy/video/upload/w_640,q_40,f_mp4,ac_none/v1779059633/insta_video_2208_vxavh9.mp4" type="video/mp4">
     </video>
     <script>
       (function(){
@@ -414,6 +414,29 @@
         v.setAttribute('autoplay', '');
         var p = v.play();
         if (p && p.catch) p.catch(function(){});
+        // Swap a versión full una vez que el video liviano está corriendo
+        var fullSrc = 'https://res.cloudinary.com/dvvuwigmy/video/upload/w_1280,q_70,f_mp4,ac_none/v1779059633/insta_video_2208_vxavh9.mp4';
+        var swapped = false;
+        v.addEventListener('playing', function upgradeVideo() {
+          if (swapped) return;
+          swapped = true;
+          var preload = new XMLHttpRequest();
+          preload.open('GET', fullSrc, true);
+          preload.responseType = 'blob';
+          preload.onload = function() {
+            if (preload.status === 200) {
+              var blobUrl = URL.createObjectURL(preload.response);
+              var currentTime = v.currentTime;
+              document.getElementById('heroVideoSrc').src = blobUrl;
+              v.load();
+              v.currentTime = currentTime;
+              var p2 = v.play();
+              if (p2 && p2.catch) p2.catch(function(){});
+            }
+          };
+          preload.send();
+          v.removeEventListener('playing', upgradeVideo);
+        });
       })();
     </script>
     <div class="hero-video-overlay"></div>
