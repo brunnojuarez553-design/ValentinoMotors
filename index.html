@@ -623,10 +623,17 @@
       
       <div class="nosotros-right fade-up delay-2">
         <div class="nosotros-photo-wrap">
-          <video id="nosotrosVideo" muted loop playsinline crossorigin="anonymous" style="width:100%;height:100%;object-fit:cover;display:block;filter:saturate(1) brightness(1);" preload="metadata"
+          <video id="nosotrosVideo" muted loop playsinline crossorigin="anonymous" style="width:100%;height:100%;object-fit:cover;display:block;filter:saturate(1) brightness(1);" preload="none"
+            poster="https://res.cloudinary.com/dvvuwigmy/video/upload/w_1080,q_80,f_jpg,so_2/v1779062127/insta_video_70029_qgjy1s.jpg"
             src="https://res.cloudinary.com/dvvuwigmy/video/upload/w_1080,q_65,vc_h264,f_mp4/v1779062127/insta_video_70029_qgjy1s.mp4"
           ></video>
           <div class="nosotros-photo-overlay"></div>
+          <!-- Botón de play para el video de nosotros -->
+          <button id="nosotrosPlayBtn" onclick="playNosotrosVideo()" aria-label="Reproducir video" style="position:absolute;inset:0;z-index:10;width:100%;height:100%;background:rgba(6,6,8,0.28);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.25s;" onmouseover="this.style.background='rgba(6,6,8,0.18)'" onmouseout="this.style.background='rgba(6,6,8,0.28)'">
+            <div style="width:72px;height:72px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 12px rgba(232,0,15,0.18),0 8px 32px rgba(0,0,0,0.55);transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='scale(1.12)';this.style.boxShadow='0 0 0 18px rgba(232,0,15,0.22),0 8px 32px rgba(0,0,0,0.55)'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 0 0 12px rgba(232,0,15,0.18),0 8px 32px rgba(0,0,0,0.55)'">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="white" style="margin-left:4px"><polygon points="5,3 19,12 5,21"/></svg>
+            </div>
+          </button>
           
           <div style="position:absolute;top:1rem;left:1rem;z-index:3;background:rgba(6,6,8,0.75);font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--red);padding:5px 10px;border:1px solid var(--border-red);">// En acción</div>
           
@@ -2056,7 +2063,7 @@ if (!isOpen) item.classList.add('open');
 (function() {
 'use strict';
 var hero = document.getElementById('heroVideo');
-var nosotros = document.getElementById('nosotrosVideo');
+
 function tryPlay(v) {
 if (!v) return;
 v.muted = true;
@@ -2067,10 +2074,9 @@ var p = v.play();
 if (p && p.catch) p.catch(function(){});
 }
 }
+
 if (hero) {
-// Forzar visible inmediatamente para no esperar al IntersectionObserver
 hero.style.opacity = '1';
-// Play agresivo: intentar de inmediato y en cada evento clave
 tryPlay(hero);
 ['loadstart','loadedmetadata','loadeddata','canplay','canplaythrough','playing'].forEach(function(ev) {
 hero.addEventListener(ev, function() { tryPlay(hero); }, { passive: true });
@@ -2078,14 +2084,12 @@ hero.addEventListener(ev, function() { tryPlay(hero); }, { passive: true });
 hero.addEventListener('pause', function() {
 if (!document.hidden) tryPlay(hero);
 }, { passive: true });
-// Reintentos escalonados para superar bloqueos de autoplay
 [0, 30, 80, 200, 500, 1000].forEach(function(ms) {
 setTimeout(function() { tryPlay(hero); }, ms);
 });
 document.addEventListener('visibilitychange', function() {
 if (!document.hidden) tryPlay(hero);
 });
-// Desbloquear en primer gesto del usuario
 var heroUnlocked = false;
 function unlockHero() {
 if (heroUnlocked) return;
@@ -2095,45 +2099,30 @@ tryPlay(hero);
 ['touchstart','touchend','click','scroll','keydown','pointerdown'].forEach(function(ev) {
 document.addEventListener(ev, unlockHero, { once: true, passive: true, capture: true });
 });
-// NO pausar en conexiones lentas — el poster HD cubre el tiempo de carga
-}
-if (nosotros) {
-nosotros.muted = true;
-nosotros.setAttribute('muted', '');
-nosotros.setAttribute('playsinline', '');
-if ('IntersectionObserver' in window) {
-var nosObserver = new IntersectionObserver(function(entries) {
-entries.forEach(function(e) {
-if (e.isIntersecting) {
-tryPlay(nosotros);
-} else {
-nosotros.pause();
-}
-});
-}, { threshold: 0.15 });
-nosObserver.observe(nosotros);
-} else {
-tryPlay(nosotros);
-}
-nosotros.addEventListener('pause', function() {
-if (!document.hidden) {
-var rect = nosotros.getBoundingClientRect();
-var visible = rect.top < window.innerHeight && rect.bottom > 0;
-if (visible) tryPlay(nosotros);
-}
-}, { passive: true });
-var nosUnlocked = false;
-function unlockNos() {
-if (nosUnlocked) return;
-nosUnlocked = true;
-var rect = nosotros.getBoundingClientRect();
-if (rect.top < window.innerHeight && rect.bottom > 0) tryPlay(nosotros);
-}
-['touchstart','click'].forEach(function(ev) {
-document.addEventListener(ev, unlockNos, { once: true, passive: true, capture: true });
-});
 }
 })();
+
+// Video de nosotros: reproducción manual con botón de play
+window.playNosotrosVideo = function() {
+var video = document.getElementById('nosotrosVideo');
+var btn = document.getElementById('nosotrosPlayBtn');
+if (!video || !btn) return;
+video.muted = true;
+video.setAttribute('muted', '');
+video.setAttribute('playsinline', '');
+var p = video.play();
+if (p && p.then) {
+p.then(function() {
+btn.style.display = 'none';
+}).catch(function() {
+// Si falla el autoplay, intentar de todas formas
+video.play();
+btn.style.display = 'none';
+});
+} else {
+btn.style.display = 'none';
+}
+};
 (function() {
 var isMobile = window.innerWidth <= 768 || ('ontouchstart' in window);
 function loadBg(el) {
