@@ -1945,7 +1945,7 @@ async function sendMessage() {
     chatHistory.push({ role: 'assistant', content: text });
     addBotMsg(text);
     updateProgress();
-    if (text.includes('👤 Nombre:') && text.includes('🚗 Vehículo:') && !summaryDetected) {
+    if ((text.includes('👤') && text.includes('🚗') && text.includes('🔧')) && !summaryDetected) {
       summaryDetected = true;
       vmlProgress.style.width = '100%';
       vmlStepLabel.textContent = 'Resumen listo ✅';
@@ -1993,11 +1993,24 @@ function showWhatsAppButton(summaryText) {
 }
 
 function sendToWhatsApp(summaryText) {
-  const clean = (summaryText || '')
-    .replace(/✅ Perfecto.*?\n\n/s, '')
-    .replace(/Ahora podés coordinar.*$/s, '')
-    .trim();
-  const msg = `Hola *Valentino Motors LG* 👋\n\nLes comparto los datos del cliente para agendar el turno:\n\n${clean}\n\nEl cliente ya fue asesorado y está listo para coordinar.`;
+  // Extraer solo las líneas del resumen que tienen emojis de datos
+  const lines = (summaryText || '').split('\n');
+  const dataLines = lines.filter(l =>
+    l.match(/^(👤|📞|🚗|🔧|🛠|📅|⚠️)/)
+  );
+  // Si se extrajeron líneas correctamente usarlas, si no usar el texto completo limpio
+  let body;
+  if (dataLines.length >= 3) {
+    body = dataLines.join('\n');
+  } else {
+    // fallback: limpiar encabezado y pie manualmente
+    body = (summaryText || '')
+      .split('\n')
+      .filter(l => l.trim() && !l.startsWith('✅') && !l.startsWith('Ahora podés') && !l.startsWith('Ahora podes'))
+      .join('\n')
+      .trim();
+  }
+  const msg = `Hola *Valentino Motors LG* 👋\n\nDatos del cliente para coordinar turno:\n\n${body}\n\n_Cliente asesorado por IA — listo para coordinar._`;
   window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
