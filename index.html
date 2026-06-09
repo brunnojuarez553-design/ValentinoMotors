@@ -1899,19 +1899,17 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape' && vmlOpen) v
 async function startChat() {
   addTypingIndicator();
   try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
+    const res = await fetch('/api/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
-        system: AI_SYSTEM_PROMPT,
+        systemPrompt: AI_SYSTEM_PROMPT,
         messages: [{ role: 'user', content: '(el cliente acaba de abrir el chat — saludalo y preguntale en qué podés ayudarlo)' }]
       })
     });
     const data = await res.json();
     removeTypingIndicator();
-    const text = data.content && data.content[0] ? data.content[0].text : '¡Hola! 👋 Bienvenido a Valentino Motors. ¿En qué puedo ayudarte con tu vehículo hoy?';
+    const text = data.text || '¡Hola! 👋 Bienvenido a Valentino Motors. ¿En qué puedo ayudarte con tu vehículo hoy?';
     chatHistory.push({ role: 'assistant', content: text });
     addBotMsg(text);
     vmlStepLabel.textContent = 'Asesor Técnico IA · 24/7';
@@ -1936,19 +1934,17 @@ async function sendMessage() {
   addTypingIndicator();
   updateProgress();
   try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
+    const res = await fetch('/api/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
-        system: AI_SYSTEM_PROMPT,
+        systemPrompt: AI_SYSTEM_PROMPT,
         messages: chatHistory
       })
     });
     const data = await res.json();
     removeTypingIndicator();
-    const text = data.content && data.content[0] ? data.content[0].text : 'Disculpá, ocurrió un error. Por favor intentá de nuevo.';
+    const text = data.text || 'Disculpá, ocurrió un error. Por favor intentá de nuevo.';
     chatHistory.push({ role: 'assistant', content: text });
     addBotMsg(text);
     updateProgress();
