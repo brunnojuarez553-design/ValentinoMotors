@@ -728,6 +728,20 @@
       .quick a{min-height:44px}
     }
 
+  
+    /* Evita el zoom automático de iPhone/iOS al enfocar campos */
+    @media(max-width:768px){
+      input,
+      select,
+      textarea,
+      .field input,
+      .field textarea,
+      .egr-field input,
+      .egr-field select{
+        font-size:16px !important;
+      }
+    }
+
   </style>
 </head>
 <body>
