@@ -1,9 +1,41 @@
 {
   "rewrites": [
-    { "source": "/sitemap.xml", "destination": "/sitemap.xml" },
-    { "source": "/robots.txt", "destination": "/robots.txt" },
-    { "source": "/api/(.*)", "destination": "/api/$1" },
-    { "source": "/(.*)", "destination": "/index.html" }
+    {
+      "source": "/diagnostico-automotriz",
+      "destination": "/diagnostico-automotriz/index.html"
+    },
+    {
+      "source": "/diagnostico-automotriz/",
+      "destination": "/diagnostico-automotriz/index.html"
+    },
+    {
+      "source": "/reprogramacion-ecu",
+      "destination": "/reprogramacion-ecu/index.html"
+    },
+    {
+      "source": "/reprogramacion-ecu/",
+      "destination": "/reprogramacion-ecu/index.html"
+    },
+    {
+      "source": "/servicios",
+      "destination": "/servicios/index.html"
+    },
+    {
+      "source": "/servicios/",
+      "destination": "/servicios/index.html"
+    },
+    {
+      "source": "/sitemap.xml",
+      "destination": "/sitemap.xml"
+    },
+    {
+      "source": "/robots.txt",
+      "destination": "/robots.txt"
+    },
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/$1"
+    }
   ],
   "headers": [
     {
